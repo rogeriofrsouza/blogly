@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: Open Blog
+  datasource:
+    url: jdbc:postgresql://postgres:5432/open_blog
+    username: blogly
+    password: secret
+    driver-class-name: org.postgresql.Driver
