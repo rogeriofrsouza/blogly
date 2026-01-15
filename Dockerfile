@@ -43,5 +43,5 @@ COPY --from=extract builder/build/extracted/dependencies/ ./
 COPY --from=extract builder/build/extracted/spring-boot-loader/ ./
 COPY --from=extract builder/build/extracted/snapshot-dependencies/ ./
 COPY --from=extract builder/build/extracted/application/ ./
-EXPOSE 8080
+EXPOSE 8081
 ENTRYPOINT [ "java", "org.springframework.boot.loader.launch.JarLauncher" ]
