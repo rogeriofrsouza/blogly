@@ -1,4 +1,4 @@
-package com.blogly.chronicles.article.domain;
+package com.blogly.chronicles.blog.domain;
 
 import lombok.Getter;
 
