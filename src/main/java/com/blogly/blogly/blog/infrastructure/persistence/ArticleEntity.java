@@ -1,4 +1,4 @@
-package com.blogly.chronicles.blog.infrastructure.persistence;
+package com.blogly.blogly.blog.infrastructure.persistence;
 
 import jakarta.persistence.*;
 import lombok.Getter;

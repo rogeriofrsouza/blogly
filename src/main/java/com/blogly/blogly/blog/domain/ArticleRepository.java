@@ -1,4 +1,4 @@
-package com.blogly.chronicles.blog.domain;
+package com.blogly.blogly.blog.domain;
 
 import java.util.Optional;
 

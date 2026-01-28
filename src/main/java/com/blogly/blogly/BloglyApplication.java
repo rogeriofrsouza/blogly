@@ -1,13 +1,13 @@
-package com.blogly.chronicles;
+package com.blogly.blogly;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ChroniclesApplication {
+public class BloglyApplication {
 
     static void main(String[] args) {
-        SpringApplication.run(ChroniclesApplication.class, args);
+        SpringApplication.run(BloglyApplication.class, args);
     }
 
 }

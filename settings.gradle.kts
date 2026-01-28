@@ -1,1 +1,1 @@
-rootProject.name = "chronicles"
+rootProject.name = "blogly"
