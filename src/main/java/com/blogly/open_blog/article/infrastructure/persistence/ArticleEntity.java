@@ -1,4 +1,4 @@
-package com.blogly.open_blog.domain.article;
+package com.blogly.open_blog.article.infrastructure.persistence;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Setter;
         uniqueConstraints = {
                 @UniqueConstraint(name = "uc_article_title", columnNames = {"title"})
         })
-public class Article {
+public class ArticleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
