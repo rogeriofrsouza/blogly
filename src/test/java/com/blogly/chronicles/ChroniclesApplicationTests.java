@@ -1,10 +1,10 @@
-package com.blogly.open_blog;
+package com.blogly.chronicles;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OpenBlogApplicationTests {
+class ChroniclesApplicationTests {
 
 	@Test
 	void contextLoads() {
