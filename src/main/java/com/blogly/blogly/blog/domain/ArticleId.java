@@ -11,4 +11,8 @@ public record ArticleId(Long value) {
             throw new IllegalArgumentException("ArticleId value cannot be negative");
         }
     }
+
+    public static ArticleId from(Long value) {
+        return new ArticleId(value);
+    }
 }
