@@ -22,8 +22,10 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     }
 
     @Override
-    public void save(Article article) {
+    public ArticleId save(Article article) {
         ArticleEntity entity = mapper.toEntity(article);
         repository.save(entity);
+
+        return ArticleId.from(entity.getId());
     }
 }

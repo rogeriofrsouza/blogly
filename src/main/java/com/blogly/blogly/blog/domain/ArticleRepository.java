@@ -6,5 +6,5 @@ public interface ArticleRepository {
 
     Optional<Article> findById(ArticleId id);
 
-    void save(Article article);
+    ArticleId save(Article article);
 }
