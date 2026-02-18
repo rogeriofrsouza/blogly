@@ -7,10 +7,16 @@ public class Article {
 
     private static final int MAX_SUMMARY_LENGTH = 100;
 
-    private final ArticleId id;
+    private ArticleId id;
     private String title;
     private String body;
     private String summary;
+
+    public Article(String title, String body, String summary) {
+        this.title = title;
+        this.body = body;
+        this.summary = summary;
+    }
 
     public Article(ArticleId id, String title, String body, String summary) {
         this.id = id;
