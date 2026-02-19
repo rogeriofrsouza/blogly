@@ -2,30 +2,23 @@ package com.blogly.blogly.blog.domain;
 
 import lombok.Getter;
 
+import java.util.Objects;
+
 @Getter
 public class Article {
-
-    private static final int MAX_SUMMARY_LENGTH = 100;
 
     private ArticleId id;
     private String title;
     private String body;
     private String summary;
 
-    public Article(String title, String body, String summary) {
-        this.title = title;
-        this.body = body;
-        this.summary = summary;
-    }
-
     public Article(ArticleId id, String title, String body, String summary) {
+        Objects.requireNonNull(id, "ArticleId cannot be null");
         this.id = id;
-        setTitle(title);
-        setBody(body);
-        setSummary(summary);
+        this(title, body, summary);
     }
 
-    public void setTitle(String title) {
+    public Article(String title, String body, String summary) {
         if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Title cannot be null or blank");
         }
@@ -35,19 +28,15 @@ public class Article {
         }
 
         this.title = title;
-    }
 
-    public void setBody(String body) {
         if (body == null || body.isBlank()) {
             throw new IllegalArgumentException("Body cannot be null or blank");
         }
 
         this.body = body;
-    }
 
-    public void setSummary(String summary) {
-        if (summary != null && summary.length() > MAX_SUMMARY_LENGTH) {
-            throw new IllegalArgumentException("Summary cannot exceed " + MAX_SUMMARY_LENGTH + " characters");
+        if (summary != null && summary.length() > 100) {
+            throw new IllegalArgumentException("Summary cannot exceed " + 100 + " characters");
         }
 
         this.summary = summary;
