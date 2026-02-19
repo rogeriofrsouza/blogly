@@ -2,21 +2,38 @@ package com.blogly.blogly.blog.infrastructure.persistence;
 
 import com.blogly.blogly.blog.domain.Article;
 import com.blogly.blogly.blog.domain.ArticleId;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.springframework.stereotype.Component;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface ArticleMapper {
+import java.util.Optional;
 
-    @Mapping(target = "id", source = "id.value")
-    ArticleEntity toEntity(Article article);
+@Component
+public class ArticleMapper {
 
-    @Mapping(target = "id", source = "id")
-    Article toDomain(ArticleEntity entity);
+    public ArticleEntity toEntity(Article article) {
+        if (article == null) {
+            return null;
+        }
 
-    default ArticleId mapId(Long id) {
-        return id != null ? ArticleId.from(id) : null;
+        ArticleEntity entity = new ArticleEntity();
+
+        Optional.ofNullable(article.getId())
+                .map(ArticleId::value)
+                .ifPresent(entity::setId);
+
+        entity.setTitle(article.getTitle());
+        entity.setBody(article.getBody());
+        entity.setSummary(article.getSummary());
+
+        return entity;
+    }
+
+    public Article toDomain(ArticleEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+
+        ArticleId id = entity.getId() != null ? ArticleId.from(entity.getId()) : null;
+
+        return new Article(id, entity.getTitle(), entity.getBody(), entity.getSummary());
     }
 }
