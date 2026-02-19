@@ -6,3 +6,11 @@ spring:
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
+scalar:
+  tag-sorter: alpha
+  dark-mode: true
+  persist-auth: true
+  telemetry: false
+  authentication:
+    preferredSecurityScheme: bearerAuth
