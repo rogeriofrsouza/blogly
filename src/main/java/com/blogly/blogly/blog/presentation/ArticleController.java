@@ -1,15 +1,14 @@
 package com.blogly.blogly.blog.presentation;
 
+import com.blogly.blogly.blog.application.dto.ArticleDto;
 import com.blogly.blogly.blog.application.usecase.CreateArticleUseCase;
+import com.blogly.blogly.blog.application.usecase.GetArticleByIdUseCase;
 import com.blogly.blogly.blog.domain.ArticleId;
 import com.blogly.blogly.blog.presentation.dto.CreateArticleRequestDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -20,6 +19,7 @@ import java.net.URI;
 class ArticleController {
 
     private final CreateArticleUseCase createUseCase;
+    private final GetArticleByIdUseCase getByIdUseCase;
 
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody CreateArticleRequestDto dto) {
@@ -31,5 +31,10 @@ class ArticleController {
                 .toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @GetMapping("/{id}")
+    public ArticleDto getById(@PathVariable Long id) {
+        return getByIdUseCase.execute(ArticleId.from(id));
     }
 }
