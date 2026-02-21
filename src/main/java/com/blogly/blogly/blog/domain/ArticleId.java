@@ -1,11 +1,11 @@
 package com.blogly.blogly.blog.domain;
 
+import java.util.Objects;
+
 public record ArticleId(Long value) {
 
     public ArticleId {
-        if (value == null) {
-            throw new IllegalArgumentException("ArticleId value cannot be null");
-        }
+        Objects.requireNonNull(value, "ArticleId value cannot be null");
 
         if (value < 0) {
             throw new IllegalArgumentException("ArticleId value cannot be negative");
