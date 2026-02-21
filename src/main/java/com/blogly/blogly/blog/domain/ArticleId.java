@@ -15,4 +15,9 @@ public record ArticleId(Long value) {
     public static ArticleId from(Long value) {
         return new ArticleId(value);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
 }
