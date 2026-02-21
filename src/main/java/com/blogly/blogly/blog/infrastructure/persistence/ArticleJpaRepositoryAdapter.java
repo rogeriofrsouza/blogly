@@ -10,9 +10,9 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Repository
-public class ArticleRepositoryImpl implements ArticleRepository {
+public class ArticleJpaRepositoryAdapter implements ArticleRepository {
 
-    private final ArticleEntityRepository repository;
+    private final ArticleJpaRepository repository;
     private final ArticleMapper mapper;
 
     @Override
