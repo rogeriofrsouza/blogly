@@ -32,7 +32,9 @@ public class ArticleMapper {
             return null;
         }
 
-        ArticleId id = entity.getId() != null ? ArticleId.from(entity.getId()) : null;
+        ArticleId id = Optional.ofNullable(entity.getId())
+                .map(ArticleId::new)
+                .orElse(null);
 
         return new Article(id, entity.getTitle(), entity.getBody(), entity.getSummary());
     }

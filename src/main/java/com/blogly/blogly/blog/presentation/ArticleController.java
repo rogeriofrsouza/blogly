@@ -35,6 +35,6 @@ class ArticleController {
 
     @GetMapping("/{id}")
     public ArticleDto getById(@PathVariable Long id) {
-        return getByIdUseCase.execute(ArticleId.from(id));
+        return getByIdUseCase.execute(new ArticleId(id));
     }
 }

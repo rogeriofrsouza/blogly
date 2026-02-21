@@ -26,6 +26,6 @@ public class ArticleJpaRepositoryAdapter implements ArticleRepository {
         ArticleEntity entity = mapper.toEntity(article);
         repository.save(entity);
 
-        return ArticleId.from(entity.getId());
+        return new ArticleId(entity.getId());
     }
 }
