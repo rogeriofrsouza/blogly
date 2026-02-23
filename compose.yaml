@@ -1,6 +1,6 @@
 services:
   api:
-    container_name: blog_api
+    container_name: blogly_api
     build:
       context: .
       target: development
@@ -14,7 +14,7 @@ services:
         condition: service_healthy
 
   postgres:
-    container_name: blog_db
+    container_name: blogly_db
     image: postgres:18.1
     restart: always
     ports:
