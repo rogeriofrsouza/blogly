@@ -1,6 +1,6 @@
-package com.blogly.blogly.blog.application.dto;
+package com.blogly.blogly.application.dto;
 
-import com.blogly.blogly.blog.domain.Article;
+import com.blogly.blogly.domain.Article;
 
 public record ArticleDto(
         Long id,

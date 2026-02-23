@@ -1,4 +1,4 @@
-package com.blogly.blogly.blog.infrastructure.persistence;
+package com.blogly.blogly.infrastructure.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

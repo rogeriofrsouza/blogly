@@ -1,9 +1,9 @@
-package com.blogly.blogly.blog.application.usecase;
+package com.blogly.blogly.application.usecase;
 
-import com.blogly.blogly.blog.application.dto.CreateArticleRequest;
-import com.blogly.blogly.blog.domain.Article;
-import com.blogly.blogly.blog.domain.ArticleId;
-import com.blogly.blogly.blog.domain.ArticleRepository;
+import com.blogly.blogly.application.dto.CreateArticleRequest;
+import com.blogly.blogly.domain.Article;
+import com.blogly.blogly.domain.ArticleId;
+import com.blogly.blogly.domain.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

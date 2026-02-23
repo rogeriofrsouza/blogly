@@ -1,10 +1,10 @@
-package com.blogly.blogly.blog.presentation;
+package com.blogly.blogly.presentation;
 
-import com.blogly.blogly.blog.application.dto.ArticleDto;
-import com.blogly.blogly.blog.application.usecase.CreateArticleUseCase;
-import com.blogly.blogly.blog.application.usecase.GetArticleByIdUseCase;
-import com.blogly.blogly.blog.domain.ArticleId;
-import com.blogly.blogly.blog.presentation.dto.CreateArticleRequestDto;
+import com.blogly.blogly.application.dto.ArticleDto;
+import com.blogly.blogly.application.usecase.CreateArticleUseCase;
+import com.blogly.blogly.application.usecase.GetArticleByIdUseCase;
+import com.blogly.blogly.domain.ArticleId;
+import com.blogly.blogly.presentation.dto.CreateArticleRequestDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

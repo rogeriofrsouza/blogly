@@ -1,4 +1,4 @@
-package com.blogly.blogly.blog.application.dto;
+package com.blogly.blogly.application.dto;
 
 public record CreateArticleRequest(
         String title,

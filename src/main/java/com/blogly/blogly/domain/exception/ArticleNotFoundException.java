@@ -1,6 +1,6 @@
-package com.blogly.blogly.blog.domain.exception;
+package com.blogly.blogly.domain.exception;
 
-import com.blogly.blogly.blog.domain.ArticleId;
+import com.blogly.blogly.domain.ArticleId;
 
 public class ArticleNotFoundException extends DomainException {
 

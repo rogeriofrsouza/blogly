@@ -1,8 +1,8 @@
-package com.blogly.blogly.blog.infrastructure.persistence;
+package com.blogly.blogly.infrastructure.persistence;
 
-import com.blogly.blogly.blog.domain.Article;
-import com.blogly.blogly.blog.domain.ArticleId;
-import com.blogly.blogly.blog.domain.ArticleRepository;
+import com.blogly.blogly.domain.Article;
+import com.blogly.blogly.domain.ArticleId;
+import com.blogly.blogly.domain.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
