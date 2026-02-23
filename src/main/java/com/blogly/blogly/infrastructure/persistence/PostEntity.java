@@ -7,11 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "article",
+@Table(name = "post",
         uniqueConstraints = {
-                @UniqueConstraint(name = "uc_article_title", columnNames = {"title"})
+                @UniqueConstraint(name = "uc_post_title", columnNames = {"title"})
         })
-public class ArticleEntity {
+public class PostEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -5,20 +5,20 @@ import lombok.Getter;
 import java.util.Objects;
 
 @Getter
-public class Article {
+public class Post {
 
-    private ArticleId id;
+    private PostId id;
     private String title;
     private String body;
     private String summary;
 
-    public Article(ArticleId id, String title, String body, String summary) {
-        Objects.requireNonNull(id, "ArticleId cannot be null");
+    public Post(PostId id, String title, String body, String summary) {
+        Objects.requireNonNull(id, "PostId cannot be null");
         this.id = id;
         this(title, body, summary);
     }
 
-    public Article(String title, String body, String summary) {
+    public Post(String title, String body, String summary) {
         if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Title cannot be null or blank");
         }

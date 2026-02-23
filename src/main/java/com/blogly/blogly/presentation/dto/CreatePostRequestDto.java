@@ -1,10 +1,10 @@
 package com.blogly.blogly.presentation.dto;
 
-import com.blogly.blogly.application.dto.CreateArticleRequest;
+import com.blogly.blogly.application.dto.CreatePostRequest;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
-public record CreateArticleRequestDto(
+public record CreatePostRequestDto(
         @NotBlank
         @Length(max = 255)
         String title,
@@ -16,7 +16,7 @@ public record CreateArticleRequestDto(
         @Length(max = 100)
         String summary
 ) {
-    public CreateArticleRequest toRequest() {
-        return new CreateArticleRequest(title, body, summary);
+    public CreatePostRequest toRequest() {
+        return new CreatePostRequest(title, body, summary);
     }
 }

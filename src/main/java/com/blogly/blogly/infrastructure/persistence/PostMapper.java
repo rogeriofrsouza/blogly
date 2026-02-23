@@ -1,0 +1,41 @@
+package com.blogly.blogly.infrastructure.persistence;
+
+import com.blogly.blogly.domain.Post;
+import com.blogly.blogly.domain.PostId;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
+
+@Component
+public class PostMapper {
+
+    public PostEntity toEntity(Post post) {
+        if (post == null) {
+            return null;
+        }
+
+        PostEntity entity = new PostEntity();
+
+        Optional.ofNullable(post.getId())
+                .map(PostId::value)
+                .ifPresent(entity::setId);
+
+        entity.setTitle(post.getTitle());
+        entity.setBody(post.getBody());
+        entity.setSummary(post.getSummary());
+
+        return entity;
+    }
+
+    public Post toDomain(PostEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+
+        PostId id = Optional.ofNullable(entity.getId())
+                .map(PostId::new)
+                .orElse(null);
+
+        return new Post(id, entity.getTitle(), entity.getBody(), entity.getSummary());
+    }
+}
