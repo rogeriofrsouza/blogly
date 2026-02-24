@@ -8,25 +8,18 @@ import java.util.Objects;
 public class Post {
 
     private PostId id;
-    private String title;
+    private Title title;
     private String body;
     private String summary;
 
-    public Post(PostId id, String title, String body, String summary) {
+    public Post(PostId id, Title title, String body, String summary) {
         Objects.requireNonNull(id, "PostId cannot be null");
         this.id = id;
         this(title, body, summary);
     }
 
-    public Post(String title, String body, String summary) {
-        if (title == null || title.isBlank()) {
-            throw new IllegalArgumentException("Title cannot be null or blank");
-        }
-
-        if (title.length() > 255) {
-            throw new IllegalArgumentException("Title cannot exceed 255 characters");
-        }
-
+    public Post(Title title, String body, String summary) {
+        Objects.requireNonNull(title, "Title cannot be null");
         this.title = title;
 
         if (body == null || body.isBlank()) {

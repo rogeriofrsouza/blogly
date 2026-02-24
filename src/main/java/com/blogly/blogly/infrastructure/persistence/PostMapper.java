@@ -2,6 +2,7 @@ package com.blogly.blogly.infrastructure.persistence;
 
 import com.blogly.blogly.domain.Post;
 import com.blogly.blogly.domain.PostId;
+import com.blogly.blogly.domain.Title;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class PostMapper {
                 .map(PostId::value)
                 .ifPresent(entity::setId);
 
-        entity.setTitle(post.getTitle());
+        entity.setTitle(post.getTitle().value());
         entity.setBody(post.getBody());
         entity.setSummary(post.getSummary());
 
@@ -36,6 +37,6 @@ public class PostMapper {
                 .map(PostId::new)
                 .orElse(null);
 
-        return new Post(id, entity.getTitle(), entity.getBody(), entity.getSummary());
+        return new Post(id, new Title(entity.getTitle()), entity.getBody(), entity.getSummary());
     }
 }

@@ -11,7 +11,7 @@ public record PostDto(
     public static PostDto from(Post post) {
         return new PostDto(
                 post.getId().value(),
-                post.getTitle(),
+                post.getTitle().value(),
                 post.getBody(),
                 post.getSummary()
         );
