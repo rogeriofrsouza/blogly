@@ -23,7 +23,7 @@ public class PostMapper {
                 .ifPresent(entity::setId);
 
         entity.setTitle(post.getTitle().value());
-        entity.setBody(post.getContent().value());
+        entity.setContent(post.getContent().value());
         entity.setSummary(post.getSummary());
 
         return entity;
@@ -40,7 +40,7 @@ public class PostMapper {
 
         return new Post(id,
                 new Title(entity.getTitle()),
-                new Content(entity.getBody()),
+                new Content(entity.getContent()),
                 entity.getSummary());
     }
 }
