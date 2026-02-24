@@ -10,13 +10,13 @@ public record CreatePostRequestDto(
         String title,
 
         @NotBlank
-        String body,
+        String content,
 
         @NotBlank
         @Length(max = 100)
         String summary
 ) {
     public CreatePostRequest toRequest() {
-        return new CreatePostRequest(title, body, summary);
+        return new CreatePostRequest(title, content, summary);
     }
 }

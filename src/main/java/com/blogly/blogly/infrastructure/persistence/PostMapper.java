@@ -1,5 +1,6 @@
 package com.blogly.blogly.infrastructure.persistence;
 
+import com.blogly.blogly.domain.Content;
 import com.blogly.blogly.domain.Post;
 import com.blogly.blogly.domain.PostId;
 import com.blogly.blogly.domain.Title;
@@ -22,7 +23,7 @@ public class PostMapper {
                 .ifPresent(entity::setId);
 
         entity.setTitle(post.getTitle().value());
-        entity.setBody(post.getBody());
+        entity.setBody(post.getContent().value());
         entity.setSummary(post.getSummary());
 
         return entity;
@@ -37,6 +38,9 @@ public class PostMapper {
                 .map(PostId::new)
                 .orElse(null);
 
-        return new Post(id, new Title(entity.getTitle()), entity.getBody(), entity.getSummary());
+        return new Post(id,
+                new Title(entity.getTitle()),
+                new Content(entity.getBody()),
+                entity.getSummary());
     }
 }

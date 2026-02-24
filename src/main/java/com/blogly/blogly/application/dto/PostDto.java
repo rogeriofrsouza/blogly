@@ -5,14 +5,14 @@ import com.blogly.blogly.domain.Post;
 public record PostDto(
         Long id,
         String title,
-        String body,
+        String content,
         String summary
 ) {
     public static PostDto from(Post post) {
         return new PostDto(
                 post.getId().value(),
                 post.getTitle().value(),
-                post.getBody(),
+                post.getContent().value(),
                 post.getSummary()
         );
     }
