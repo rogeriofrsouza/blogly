@@ -10,25 +10,18 @@ public class Post {
     private PostId id;
     private Title title;
     private Content content;
-    private String summary;
 
-    public Post(PostId id, Title title, Content content, String summary) {
+    public Post(PostId id, Title title, Content content) {
         Objects.requireNonNull(id, "PostId cannot be null");
         this.id = id;
-        this(title, content, summary);
+        this(title, content);
     }
 
-    public Post(Title title, Content content, String summary) {
+    public Post(Title title, Content content) {
         Objects.requireNonNull(title, "Title cannot be null");
         Objects.requireNonNull(content, "Content cannot be null");
 
         this.title = title;
         this.content = content;
-
-        if (summary != null && summary.length() > 100) {
-            throw new IllegalArgumentException("Summary cannot exceed " + 100 + " characters");
-        }
-
-        this.summary = summary;
     }
 }

@@ -23,7 +23,4 @@ public class PostEntity {
     @Lob
     @Column(nullable = false)
     private String content;
-
-    @Column(length = 100)
-    private String summary;
 }
