@@ -14,7 +14,8 @@ public class CreatePostUseCase {
     public PostId execute(CreatePostRequest request) {
         var post = new Post(
                 new Title(request.title()),
-                new Content(request.content())
+                new Content(request.content()),
+                PostStatus.DRAFT
         );
 
         return repository.save(post);
