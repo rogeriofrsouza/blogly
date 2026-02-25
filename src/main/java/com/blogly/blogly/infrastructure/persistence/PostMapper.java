@@ -24,6 +24,7 @@ public class PostMapper {
 
         entity.setTitle(post.getTitle().value());
         entity.setContent(post.getContent().value());
+        entity.setStatus(post.getStatus());
 
         return entity;
     }
@@ -37,9 +38,11 @@ public class PostMapper {
                 .map(PostId::new)
                 .orElse(null);
 
-        return new Post(id,
+        return new Post(
+                id,
                 new Title(entity.getTitle()),
-                new Content(entity.getContent())
+                new Content(entity.getContent()),
+                entity.getStatus()
         );
     }
 }

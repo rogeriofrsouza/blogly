@@ -1,5 +1,6 @@
 package com.blogly.blogly.infrastructure.persistence;
 
+import com.blogly.blogly.domain.PostStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,4 +24,8 @@ public class PostEntity {
     @Lob
     @Column(nullable = false)
     private String content;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", length = 20)
+    private PostStatus status;
 }
