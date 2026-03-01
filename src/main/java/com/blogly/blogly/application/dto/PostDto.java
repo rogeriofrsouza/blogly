@@ -1,6 +1,7 @@
 package com.blogly.blogly.application.dto;
 
 import com.blogly.blogly.domain.Post;
+import com.blogly.blogly.domain.PostId;
 
 public record PostDto(
         Long id,
@@ -9,7 +10,7 @@ public record PostDto(
 ) {
     public static PostDto from(Post post) {
         return new PostDto(
-                post.getId().value(),
+                post.getId().map(PostId::value).orElse(null),
                 post.getTitle().value(),
                 post.getContent().value()
         );

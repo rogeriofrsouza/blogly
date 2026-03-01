@@ -18,7 +18,7 @@ public class PostMapper {
 
         PostEntity entity = new PostEntity();
 
-        Optional.ofNullable(post.getId())
+        post.getId()
                 .map(PostId::value)
                 .ifPresent(entity::setId);
 
@@ -38,11 +38,14 @@ public class PostMapper {
                 .map(PostId::new)
                 .orElse(null);
 
-        return new Post(
-                id,
+        Post post = new Post(
                 new Title(entity.getTitle()),
                 new Content(entity.getContent()),
                 entity.getStatus()
         );
+
+        post.setId(id);
+
+        return post;
     }
 }

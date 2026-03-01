@@ -3,6 +3,7 @@ package com.blogly.blogly.domain;
 import lombok.Getter;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Getter
 public class Post {
@@ -12,12 +13,6 @@ public class Post {
     private Content content;
     private PostStatus status;
 
-    public Post(PostId id, Title title, Content content, PostStatus status) {
-        Objects.requireNonNull(id, "PostId cannot be null");
-        this.id = id;
-        this(title, content, status);
-    }
-
     public Post(Title title, Content content, PostStatus status) {
         Objects.requireNonNull(title, "Title cannot be null");
         Objects.requireNonNull(content, "Content cannot be null");
@@ -26,5 +21,19 @@ public class Post {
         this.title = title;
         this.content = content;
         this.status = status;
+    }
+
+    public void setId(PostId id) {
+        Objects.requireNonNull(id, "PostId cannot be null");
+
+        if (this.id != null) {
+            throw new IllegalStateException("PostId already exists");
+        }
+
+        this.id = id;
+    }
+
+    public Optional<PostId> getId() {
+        return Optional.ofNullable(id);
     }
 }
