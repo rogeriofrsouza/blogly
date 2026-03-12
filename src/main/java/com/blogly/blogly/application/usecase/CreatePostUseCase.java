@@ -12,11 +12,9 @@ public class CreatePostUseCase {
     private final PostRepository repository;
 
     public PostId execute(CreatePostRequest request) {
-        var post = new Post(
+        var post = Post.create(
                 new Title(request.title()),
-                new Content(request.content()),
-                PostStatus.DRAFT
-        );
+                new Content(request.content()));
 
         return repository.save(post);
     }

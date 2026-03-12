@@ -6,8 +6,6 @@ import com.blogly.blogly.domain.PostId;
 import com.blogly.blogly.domain.Title;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 public class PostMapper {
 
@@ -18,9 +16,8 @@ public class PostMapper {
 
         PostEntity entity = new PostEntity();
 
-        post.getId()
-                .map(PostId::value)
-                .ifPresent(entity::setId);
+        entity.setId(
+                post.getId().value() == Long.MAX_VALUE ? null : post.getId().value());
 
         entity.setTitle(post.getTitle().value());
         entity.setContent(post.getContent().value());
@@ -34,18 +31,11 @@ public class PostMapper {
             return null;
         }
 
-        PostId id = Optional.ofNullable(entity.getId())
-                .map(PostId::new)
-                .orElse(null);
-
-        Post post = new Post(
+        return new Post(
+                new PostId(entity.getId()),
                 new Title(entity.getTitle()),
                 new Content(entity.getContent()),
                 entity.getStatus()
         );
-
-        post.setId(id);
-
-        return post;
     }
 }

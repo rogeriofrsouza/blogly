@@ -3,37 +3,32 @@ package com.blogly.blogly.domain;
 import lombok.Getter;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Getter
 public class Post {
 
-    private PostId id;
+    private final PostId id;
     private Title title;
     private Content content;
     private PostStatus status;
 
-    public Post(Title title, Content content, PostStatus status) {
+    public Post(PostId id, Title title, Content content, PostStatus status) {
+        Objects.requireNonNull(id, "PostId cannot be null");
         Objects.requireNonNull(title, "Title cannot be null");
         Objects.requireNonNull(content, "Content cannot be null");
         Objects.requireNonNull(status, "Status cannot be null");
 
+        this.id = id;
         this.title = title;
         this.content = content;
         this.status = status;
     }
 
-    public void setId(PostId id) {
-        Objects.requireNonNull(id, "PostId cannot be null");
-
-        if (this.id != null) {
-            throw new IllegalStateException("PostId already exists");
-        }
-
-        this.id = id;
-    }
-
-    public Optional<PostId> getId() {
-        return Optional.ofNullable(id);
+    public static Post create(Title title, Content content) {
+        return new Post(
+                new PostId(Long.MAX_VALUE),
+                title,
+                content,
+                PostStatus.DRAFT);
     }
 }
