@@ -11,9 +11,4 @@ public record PostId(Long value) {
             throw new IllegalArgumentException("PostId value must be positive");
         }
     }
-
-    @Override
-    public String toString() {
-        return String.valueOf(value);
-    }
 }
