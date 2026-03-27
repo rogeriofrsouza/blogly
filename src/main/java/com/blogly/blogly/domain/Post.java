@@ -1,5 +1,6 @@
 package com.blogly.blogly.domain;
 
+import io.hypersistence.tsid.TSID;
 import lombok.Getter;
 
 import java.util.Objects;
@@ -26,7 +27,7 @@ public class Post {
 
     public static Post create(Title title, Content content) {
         return new Post(
-                new PostId(Long.MAX_VALUE),
+                new PostId(TSID.fast().toLong()),
                 title,
                 content,
                 PostStatus.DRAFT);

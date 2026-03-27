@@ -16,9 +16,7 @@ public class PostMapper {
 
         PostEntity entity = new PostEntity();
 
-        entity.setId(
-                post.getId().value() == Long.MAX_VALUE ? null : post.getId().value());
-
+        entity.setId(post.getId().value());
         entity.setTitle(post.getTitle().value());
         entity.setContent(post.getContent().value());
         entity.setStatus(post.getStatus());
