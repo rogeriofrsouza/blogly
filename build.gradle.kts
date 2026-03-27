@@ -17,6 +17,7 @@ java {
 val mapstructVersion = "1.6.3"
 val lombokMapstructBindingVersion = "0.2.0"
 val springDocVersion = "2.8.15"
+val tsidVersion = "2.1.4"
 
 configurations {
     compileOnly {
@@ -36,6 +37,7 @@ dependencies {
     implementation("org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-scalar:${springDocVersion}")
+    implementation("io.hypersistence:hypersistence-tsid:${tsidVersion}")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
