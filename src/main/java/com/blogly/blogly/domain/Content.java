@@ -2,7 +2,7 @@ package com.blogly.blogly.domain;
 
 public record Content(String value) {
 
-    private static final int MAX_LENGTH = 5_000;
+    private static final int MAX_LENGTH = 1_000;
 
     public Content {
         if (value == null || value.isBlank()) {

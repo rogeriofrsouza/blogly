@@ -20,8 +20,7 @@ public class PostEntity {
     @Column(nullable = false, unique = true)
     private String title;
 
-    @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String content;
 
     @Enumerated(EnumType.STRING)

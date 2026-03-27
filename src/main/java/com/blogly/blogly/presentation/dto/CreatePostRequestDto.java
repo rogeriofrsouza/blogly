@@ -10,6 +10,7 @@ public record CreatePostRequestDto(
         String title,
 
         @NotBlank
+        @Length(max = 1000)
         String content
 ) {
     public CreatePostRequest toRequest() {
