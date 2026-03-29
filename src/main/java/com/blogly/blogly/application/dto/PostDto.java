@@ -1,6 +1,6 @@
 package com.blogly.blogly.application.dto;
 
-import com.blogly.blogly.domain.Post;
+import com.blogly.blogly.domain.post.Post;
 
 public record PostDto(
         Long id,

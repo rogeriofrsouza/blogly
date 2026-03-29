@@ -1,9 +1,9 @@
 package com.blogly.blogly.infrastructure.persistence;
 
-import com.blogly.blogly.domain.Post;
-import com.blogly.blogly.domain.PostId;
-import com.blogly.blogly.domain.PostRepository;
-import com.blogly.blogly.domain.Title;
+import com.blogly.blogly.domain.post.Post;
+import com.blogly.blogly.domain.post.PostId;
+import com.blogly.blogly.domain.post.PostRepository;
+import com.blogly.blogly.domain.post.Title;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

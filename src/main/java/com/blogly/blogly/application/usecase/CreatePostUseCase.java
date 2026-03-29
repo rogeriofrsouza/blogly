@@ -1,8 +1,8 @@
 package com.blogly.blogly.application.usecase;
 
 import com.blogly.blogly.application.dto.CreatePostRequest;
-import com.blogly.blogly.domain.*;
 import com.blogly.blogly.domain.exception.TitleAlreadyExistsException;
+import com.blogly.blogly.domain.post.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

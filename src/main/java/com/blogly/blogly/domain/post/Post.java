@@ -1,4 +1,4 @@
-package com.blogly.blogly.domain;
+package com.blogly.blogly.domain.post;
 
 import io.hypersistence.tsid.TSID;
 import lombok.Getter;

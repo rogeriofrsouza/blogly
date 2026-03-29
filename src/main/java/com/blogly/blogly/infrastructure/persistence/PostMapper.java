@@ -1,9 +1,9 @@
 package com.blogly.blogly.infrastructure.persistence;
 
-import com.blogly.blogly.domain.Content;
-import com.blogly.blogly.domain.Post;
-import com.blogly.blogly.domain.PostId;
-import com.blogly.blogly.domain.Title;
+import com.blogly.blogly.domain.post.Content;
+import com.blogly.blogly.domain.post.Post;
+import com.blogly.blogly.domain.post.PostId;
+import com.blogly.blogly.domain.post.Title;
 import org.springframework.stereotype.Component;
 
 @Component

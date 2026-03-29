@@ -3,7 +3,7 @@ package com.blogly.blogly.presentation;
 import com.blogly.blogly.application.dto.PostDto;
 import com.blogly.blogly.application.usecase.CreatePostUseCase;
 import com.blogly.blogly.application.usecase.GetPostByIdUseCase;
-import com.blogly.blogly.domain.PostId;
+import com.blogly.blogly.domain.post.PostId;
 import com.blogly.blogly.presentation.dto.CreatePostRequestDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

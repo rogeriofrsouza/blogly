@@ -1,4 +1,4 @@
-package com.blogly.blogly.domain;
+package com.blogly.blogly.domain.post;
 
 public record Title(String value) {
 

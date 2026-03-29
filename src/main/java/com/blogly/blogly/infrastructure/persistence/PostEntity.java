@@ -1,6 +1,6 @@
 package com.blogly.blogly.infrastructure.persistence;
 
-import com.blogly.blogly.domain.PostStatus;
+import com.blogly.blogly.domain.post.PostStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
