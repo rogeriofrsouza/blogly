@@ -2,6 +2,7 @@ package com.blogly.blogly.application.usecase;
 
 import com.blogly.blogly.application.dto.CreatePostRequest;
 import com.blogly.blogly.domain.*;
+import com.blogly.blogly.domain.exception.TitleAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,8 +13,14 @@ public class CreatePostUseCase {
     private final PostRepository repository;
 
     public PostId execute(CreatePostRequest request) {
+        var title = new Title(request.title());
+
+        if (repository.existsByTitle(title)) {
+            throw new TitleAlreadyExistsException(title.value());
+        }
+
         var post = Post.create(
-                new Title(request.title()),
+                title,
                 new Content(request.content()));
 
         return repository.save(post);
