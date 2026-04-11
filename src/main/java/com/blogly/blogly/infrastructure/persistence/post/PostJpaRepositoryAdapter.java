@@ -1,4 +1,4 @@
-package com.blogly.blogly.infrastructure.persistence;
+package com.blogly.blogly.infrastructure.persistence.post;
 
 import com.blogly.blogly.domain.post.Post;
 import com.blogly.blogly.domain.post.PostId;

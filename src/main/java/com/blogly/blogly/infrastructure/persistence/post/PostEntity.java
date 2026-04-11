@@ -1,4 +1,4 @@
-package com.blogly.blogly.infrastructure.persistence;
+package com.blogly.blogly.infrastructure.persistence.post;
 
 import com.blogly.blogly.domain.post.PostStatus;
 import jakarta.persistence.*;
