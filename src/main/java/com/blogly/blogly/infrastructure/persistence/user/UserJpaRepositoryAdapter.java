@@ -1,4 +1,4 @@
-package com.blogly.blogly.infrastructure.persistence;
+package com.blogly.blogly.infrastructure.persistence.user;
 
 import com.blogly.blogly.domain.user.Email;
 import com.blogly.blogly.domain.user.User;
