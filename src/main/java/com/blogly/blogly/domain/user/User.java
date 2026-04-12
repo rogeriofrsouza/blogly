@@ -12,7 +12,7 @@ public class User {
     private final Email email;
     private Password password;
     private Name name;
-    private final Role role;
+    private Role role;
 
     public User(UserId id, Email email, Password password, Name name, Role role) {
         Objects.requireNonNull(id, "UserId cannot be null");
@@ -36,5 +36,16 @@ public class User {
                 name,
                 Role.USER
         );
+    }
+
+    public void promoteToAdmin() {
+        if (isAdmin()) {
+            throw new UserAlreadyAdminException();
+        }
+        role = Role.ADMIN;
+    }
+
+    public boolean isAdmin() {
+        return role == Role.ADMIN;
     }
 }
