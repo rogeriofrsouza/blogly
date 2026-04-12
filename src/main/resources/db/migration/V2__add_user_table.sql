@@ -1,4 +1,4 @@
-CREATE TABLE "user"
+CREATE TABLE users
 (
     id       bigint PRIMARY KEY,
     email    varchar(50)  NOT NULL UNIQUE,
