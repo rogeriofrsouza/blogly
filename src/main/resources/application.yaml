@@ -17,3 +17,9 @@ scalar:
   telemetry: false
   authentication:
     preferredSecurityScheme: bearerAuth
+
+app:
+  admin:
+    email: ${ADMIN_EMAIL}
+    password: ${ADMIN_PASSWORD}
+    name: ${ADMIN_NAME}
