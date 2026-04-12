@@ -16,6 +16,7 @@ public class UserMapper {
         entity.setEmail(user.getEmail().value());
         entity.setPassword(user.getPassword().hashedValue());
         entity.setName(user.getName().value());
+        entity.setRole(user.getRole());
 
         return entity;
     }
@@ -29,7 +30,8 @@ public class UserMapper {
                 new UserId(entity.getId()),
                 new Email(entity.getEmail()),
                 new Password(entity.getPassword()),
-                new Name(entity.getName())
+                new Name(entity.getName()),
+                entity.getRole()
         );
     }
 }

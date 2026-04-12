@@ -1,0 +1,2 @@
+ALTER TABLE "user"
+    ADD COLUMN role varchar(20) NOT NULL DEFAULT 'USER';
