@@ -18,6 +18,7 @@ val mapstructVersion = "1.6.3"
 val lombokMapstructBindingVersion = "0.2.0"
 val springDocVersion = "2.8.15"
 val tsidVersion = "2.1.4"
+val authJwtVersion = "4.5.1"
 
 configurations {
     compileOnly {
@@ -34,6 +35,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
     implementation("org.springframework.boot:spring-boot-starter-flyway")
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("com.auth0:java-jwt:${authJwtVersion}")
     implementation("org.mapstruct:mapstruct:$mapstructVersion")
     implementation("org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}")
     implementation("org.springframework.boot:spring-boot-starter-validation")
