@@ -26,3 +26,6 @@ app:
     email: ${ADMIN_EMAIL}
     password: ${ADMIN_PASSWORD}
     name: ${ADMIN_NAME}
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: ${JWT_EXPIRATION_MS}
