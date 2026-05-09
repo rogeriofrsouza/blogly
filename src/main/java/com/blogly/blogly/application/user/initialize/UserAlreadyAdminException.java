@@ -1,4 +1,4 @@
-package com.blogly.blogly.application.usecase;
+package com.blogly.blogly.application.user.initialize;
 
 import com.blogly.blogly.application.exception.ApplicationException;
 

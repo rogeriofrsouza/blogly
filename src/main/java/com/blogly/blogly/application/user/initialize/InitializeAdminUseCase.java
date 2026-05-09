@@ -1,6 +1,5 @@
-package com.blogly.blogly.application.usecase;
+package com.blogly.blogly.application.user.initialize;
 
-import com.blogly.blogly.application.dto.InitializeAdminRequest;
 import com.blogly.blogly.domain.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

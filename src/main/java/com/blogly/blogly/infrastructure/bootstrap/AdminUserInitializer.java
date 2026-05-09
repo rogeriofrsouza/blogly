@@ -1,7 +1,7 @@
 package com.blogly.blogly.infrastructure.bootstrap;
 
-import com.blogly.blogly.application.dto.InitializeAdminRequest;
-import com.blogly.blogly.application.usecase.InitializeAdminUseCase;
+import com.blogly.blogly.application.user.initialize.InitializeAdminRequest;
+import com.blogly.blogly.application.user.initialize.InitializeAdminUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
