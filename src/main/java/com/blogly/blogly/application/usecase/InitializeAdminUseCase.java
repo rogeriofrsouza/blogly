@@ -24,9 +24,11 @@ public class InitializeAdminUseCase {
                         new Name(request.name())
                 ));
 
-        if (!user.isAdmin()) {
-            user.promoteToAdmin();
-            userRepository.save(user);
+        if (user.isAdmin()) {
+            throw new UserAlreadyAdminException();
         }
+
+        user.promoteToAdmin();
+        userRepository.save(user);
     }
 }

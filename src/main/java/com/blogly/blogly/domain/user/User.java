@@ -39,9 +39,6 @@ public class User {
     }
 
     public void promoteToAdmin() {
-        if (isAdmin()) {
-            throw new UserAlreadyAdminException();
-        }
         role = Role.ADMIN;
     }
 
