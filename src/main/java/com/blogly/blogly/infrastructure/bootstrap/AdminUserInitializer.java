@@ -2,6 +2,7 @@ package com.blogly.blogly.infrastructure.bootstrap;
 
 import com.blogly.blogly.application.user.initialize.InitializeAdminRequest;
 import com.blogly.blogly.application.user.initialize.InitializeAdminUseCase;
+import com.blogly.blogly.application.user.initialize.UserAlreadyAdminException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +19,7 @@ class AdminUserInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) {
         try {
-            log.info("Starting admin user initialization");
+            log.debug("Starting admin user initialization");
 
             var request = new InitializeAdminRequest(
                     adminProperties.email(),
@@ -28,6 +29,8 @@ class AdminUserInitializer implements CommandLineRunner {
 
             useCase.execute(request);
             log.info("Admin user initialization process finished");
+        } catch (UserAlreadyAdminException _) {
+            log.info("Admin user is already initialized, skipping initialization");
         } catch (Exception e) {
             log.error("Failed to initialize admin user", e);
         }
