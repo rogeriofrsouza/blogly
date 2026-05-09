@@ -1,6 +1,5 @@
-package com.blogly.blogly.application.usecase;
+package com.blogly.blogly.application.post.create;
 
-import com.blogly.blogly.application.dto.CreatePostRequest;
 import com.blogly.blogly.domain.post.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

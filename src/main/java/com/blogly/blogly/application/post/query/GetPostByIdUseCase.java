@@ -1,4 +1,4 @@
-package com.blogly.blogly.application.usecase;
+package com.blogly.blogly.application.post.query;
 
 import com.blogly.blogly.application.dto.PostDto;
 import com.blogly.blogly.domain.post.PostId;

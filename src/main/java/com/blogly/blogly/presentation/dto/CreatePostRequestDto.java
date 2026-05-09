@@ -1,6 +1,6 @@
 package com.blogly.blogly.presentation.dto;
 
-import com.blogly.blogly.application.dto.CreatePostRequest;
+import com.blogly.blogly.application.post.create.CreatePostRequest;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
