@@ -18,7 +18,7 @@ public class InitializeAdminUseCase {
         var email = new Email(request.email());
 
         User user = userRepository.findByEmail(email)
-                .orElse(User.register(
+                .orElse(User.signUp(
                         email,
                         Password.create(request.password(), passwordHasher),
                         new Name(request.name())

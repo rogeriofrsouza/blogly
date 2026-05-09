@@ -28,7 +28,7 @@ public class User {
         this.role = role;
     }
 
-    public static User register(Email email, Password password, Name name) {
+    public static User signUp(Email email, Password password, Name name) {
         return new User(
                 new UserId(TSID.fast().toLong()),
                 email,
