@@ -14,7 +14,7 @@ import java.util.Optional;
 public class UserJpaRepositoryAdapter implements UserRepository {
 
     private final UserJpaRepository repository;
-    private final UserMapper mapper;
+    private final UserDomainMapper mapper;
 
     @Override
     public Optional<User> findById(UserId id) {
@@ -37,6 +37,6 @@ public class UserJpaRepositoryAdapter implements UserRepository {
     public UserId save(User user) {
         UserEntity entity = mapper.toEntity(user);
         repository.save(entity);
-        return new UserId(entity.getId());
+        return user.getId();
     }
 }

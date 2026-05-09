@@ -4,13 +4,9 @@ import com.blogly.blogly.domain.user.*;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
+public class UserDomainMapper {
 
     public UserEntity toEntity(User user) {
-        if (user == null) {
-            return null;
-        }
-
         UserEntity entity = new UserEntity();
         entity.setId(user.getId().value());
         entity.setEmail(user.getEmail().value());
@@ -22,10 +18,6 @@ public class UserMapper {
     }
 
     public User toDomain(UserEntity entity) {
-        if (entity == null) {
-            return null;
-        }
-
         return new User(
                 new UserId(entity.getId()),
                 new Email(entity.getEmail()),
