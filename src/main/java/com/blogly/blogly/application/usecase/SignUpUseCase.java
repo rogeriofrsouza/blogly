@@ -3,7 +3,6 @@ package com.blogly.blogly.application.usecase;
 import com.blogly.blogly.application.dto.SignUpRequest;
 import com.blogly.blogly.application.dto.SignUpResponse;
 import com.blogly.blogly.application.dto.UserDto;
-import com.blogly.blogly.domain.exception.EmailAlreadyExistsException;
 import com.blogly.blogly.domain.user.*;
 import com.blogly.blogly.infrastructure.security.jwt.JwtService;
 import com.blogly.blogly.infrastructure.security.userdetails.SecurityUser;

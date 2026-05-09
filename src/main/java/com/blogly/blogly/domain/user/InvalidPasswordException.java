@@ -1,4 +1,6 @@
-package com.blogly.blogly.domain.exception;
+package com.blogly.blogly.domain.user;
+
+import com.blogly.blogly.domain.exception.DomainException;
 
 public class InvalidPasswordException extends DomainException {
 

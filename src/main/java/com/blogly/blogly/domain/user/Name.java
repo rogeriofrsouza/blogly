@@ -1,7 +1,5 @@
 package com.blogly.blogly.domain.user;
 
-import com.blogly.blogly.domain.exception.InvalidNameException;
-
 import java.util.Objects;
 
 public record Name(String value) {

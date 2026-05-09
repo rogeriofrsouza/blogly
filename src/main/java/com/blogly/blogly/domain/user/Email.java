@@ -1,7 +1,5 @@
 package com.blogly.blogly.domain.user;
 
-import com.blogly.blogly.domain.exception.InvalidEmailException;
-
 import java.util.regex.Pattern;
 
 public record Email(String value) {

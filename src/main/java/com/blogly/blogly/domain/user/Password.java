@@ -1,7 +1,5 @@
 package com.blogly.blogly.domain.user;
 
-import com.blogly.blogly.domain.exception.InvalidPasswordException;
-
 import java.util.Objects;
 
 public record Password(String hashedValue) {

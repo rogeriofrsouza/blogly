@@ -1,6 +1,6 @@
-package com.blogly.blogly.domain.exception;
+package com.blogly.blogly.domain.post;
 
-import com.blogly.blogly.domain.post.PostId;
+import com.blogly.blogly.domain.exception.DomainException;
 
 public class PostNotFoundException extends DomainException {
 
