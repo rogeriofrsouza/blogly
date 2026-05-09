@@ -1,6 +1,6 @@
 package com.blogly.blogly.presentation;
 
-import com.blogly.blogly.application.dto.PostDto;
+import com.blogly.blogly.application.post.PostDto;
 import com.blogly.blogly.application.post.create.CreatePostUseCase;
 import com.blogly.blogly.application.post.query.GetPostByIdUseCase;
 import com.blogly.blogly.domain.post.PostId;

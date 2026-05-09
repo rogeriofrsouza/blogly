@@ -1,4 +1,4 @@
-package com.blogly.blogly.application.dto;
+package com.blogly.blogly.application.post;
 
 import com.blogly.blogly.domain.post.Post;
 

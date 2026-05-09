@@ -1,4 +1,4 @@
-package com.blogly.blogly.application.exception;
+package com.blogly.blogly.application.shared;
 
 public abstract class ApplicationException extends RuntimeException {
 

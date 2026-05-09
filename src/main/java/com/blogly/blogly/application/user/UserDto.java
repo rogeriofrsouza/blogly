@@ -1,4 +1,4 @@
-package com.blogly.blogly.application.dto;
+package com.blogly.blogly.application.user;
 
 import com.blogly.blogly.domain.user.Role;
 import com.blogly.blogly.domain.user.User;
