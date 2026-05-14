@@ -1,10 +1,9 @@
-package com.blogly.blogly.presentation;
+package com.blogly.blogly.presentation.post;
 
 import com.blogly.blogly.application.post.create.CreatePostUseCase;
 import com.blogly.blogly.application.post.query.GetPostByIdUseCase;
 import com.blogly.blogly.application.post.query.PostDetailsResponse;
 import com.blogly.blogly.domain.post.PostId;
-import com.blogly.blogly.presentation.dto.CreatePostRequestDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

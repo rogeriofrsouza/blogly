@@ -1,4 +1,4 @@
-package com.blogly.blogly.presentation.dto;
+package com.blogly.blogly.presentation.post;
 
 import com.blogly.blogly.application.post.create.CreatePostRequest;
 import jakarta.validation.constraints.NotBlank;

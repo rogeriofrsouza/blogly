@@ -1,4 +1,4 @@
-package com.blogly.blogly.presentation.dto;
+package com.blogly.blogly.presentation.user;
 
 import com.blogly.blogly.application.user.signup.SignUpRequest;
 import jakarta.validation.constraints.Email;

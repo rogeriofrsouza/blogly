@@ -1,8 +1,7 @@
-package com.blogly.blogly.presentation;
+package com.blogly.blogly.presentation.user;
 
 import com.blogly.blogly.application.user.signup.SignUpResponse;
 import com.blogly.blogly.application.user.signup.SignUpUseCase;
-import com.blogly.blogly.presentation.dto.SignUpRequestDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
