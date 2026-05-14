@@ -28,6 +28,6 @@ public class SignUpUseCase {
 
         userRepository.save(user);
 
-        return new SignUpResponse(user.getEmail().value(), user.getRole());
+        return new SignUpResponse(user.getId().value(), user.getEmail().value(), user.getRole());
     }
 }
