@@ -1,6 +1,6 @@
 package com.blogly.blogly.application.user.signup;
 
-import com.blogly.blogly.application.user.UserDto;
+import com.blogly.blogly.domain.user.Role;
 
-public record SignUpResponse(String token, UserDto user) {
+public record SignUpResponse(String token, String email, Role role) {
 }

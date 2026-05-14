@@ -1,6 +1,5 @@
 package com.blogly.blogly.application.user.signup;
 
-import com.blogly.blogly.application.user.UserDto;
 import com.blogly.blogly.domain.user.*;
 import com.blogly.blogly.infrastructure.security.jwt.JwtService;
 import com.blogly.blogly.infrastructure.security.userdetails.SecurityUser;
@@ -33,6 +32,6 @@ public class SignUpUseCase {
         userRepository.save(user);
 
         var token = jwtService.generateToken(new SecurityUser(user));
-        return new SignUpResponse(token, UserDto.from(user));
+        return new SignUpResponse(token, user.getEmail().value(), user.getRole());
     }
 }
