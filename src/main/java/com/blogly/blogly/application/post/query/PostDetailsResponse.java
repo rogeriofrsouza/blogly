@@ -1,14 +1,14 @@
-package com.blogly.blogly.application.post;
+package com.blogly.blogly.application.post.query;
 
 import com.blogly.blogly.domain.post.Post;
 
-public record PostDto(
+public record PostDetailsResponse(
         Long id,
         String title,
         String content
 ) {
-    public static PostDto from(Post post) {
-        return new PostDto(
+    public static PostDetailsResponse from(Post post) {
+        return new PostDetailsResponse(
                 post.getId().value(),
                 post.getTitle().value(),
                 post.getContent().value()

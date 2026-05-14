@@ -1,8 +1,8 @@
 package com.blogly.blogly.presentation;
 
-import com.blogly.blogly.application.post.PostDto;
 import com.blogly.blogly.application.post.create.CreatePostUseCase;
 import com.blogly.blogly.application.post.query.GetPostByIdUseCase;
+import com.blogly.blogly.application.post.query.PostDetailsResponse;
 import com.blogly.blogly.domain.post.PostId;
 import com.blogly.blogly.presentation.dto.CreatePostRequestDto;
 import jakarta.validation.Valid;
@@ -34,7 +34,7 @@ class PostController {
     }
 
     @GetMapping("/{id}")
-    public PostDto getById(@PathVariable Long id) {
+    public PostDetailsResponse getById(@PathVariable Long id) {
         return getByIdUseCase.execute(new PostId(id));
     }
 }
