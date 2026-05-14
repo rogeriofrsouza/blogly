@@ -1,4 +1,4 @@
-package com.blogly.blogly.presentation.user;
+package com.blogly.blogly.presentation.auth;
 
 import com.blogly.blogly.application.user.signup.SignUpResponse;
 import com.blogly.blogly.application.user.signup.SignUpUseCase;
