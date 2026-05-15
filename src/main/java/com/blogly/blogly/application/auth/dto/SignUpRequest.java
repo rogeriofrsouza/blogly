@@ -1,4 +1,4 @@
-package com.blogly.blogly.application.user.signup;
+package com.blogly.blogly.application.auth.dto;
 
 public record SignUpRequest(
         String email,

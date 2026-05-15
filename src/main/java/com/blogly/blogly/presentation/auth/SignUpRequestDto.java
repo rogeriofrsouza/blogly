@@ -1,6 +1,6 @@
 package com.blogly.blogly.presentation.auth;
 
-import com.blogly.blogly.application.user.signup.SignUpRequest;
+import com.blogly.blogly.application.auth.dto.SignUpRequest;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;

@@ -1,5 +1,7 @@
-package com.blogly.blogly.application.user.signup;
+package com.blogly.blogly.application.auth;
 
+import com.blogly.blogly.application.auth.dto.SignUpRequest;
+import com.blogly.blogly.application.auth.dto.SignUpResponse;
 import com.blogly.blogly.domain.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.blogly.blogly.presentation.auth;
 
-import com.blogly.blogly.application.user.signup.SignUpResponse;
-import com.blogly.blogly.application.user.signup.SignUpUseCase;
+import com.blogly.blogly.application.auth.SignUpUseCase;
+import com.blogly.blogly.application.auth.dto.SignUpResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
