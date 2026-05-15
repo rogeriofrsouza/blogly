@@ -1,5 +1,6 @@
-package com.blogly.blogly.application.post.create;
+package com.blogly.blogly.application.post;
 
+import com.blogly.blogly.application.post.dto.CreatePostRequest;
 import com.blogly.blogly.domain.post.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

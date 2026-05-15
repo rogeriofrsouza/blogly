@@ -1,4 +1,4 @@
-package com.blogly.blogly.application.post.create;
+package com.blogly.blogly.application.post.dto;
 
 public record CreatePostRequest(
         String title,

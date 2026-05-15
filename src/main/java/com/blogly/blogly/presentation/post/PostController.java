@@ -1,8 +1,8 @@
 package com.blogly.blogly.presentation.post;
 
-import com.blogly.blogly.application.post.create.CreatePostUseCase;
-import com.blogly.blogly.application.post.query.GetPostByIdUseCase;
-import com.blogly.blogly.application.post.query.PostDetailsResponse;
+import com.blogly.blogly.application.post.CreatePostUseCase;
+import com.blogly.blogly.application.post.GetPostByIdUseCase;
+import com.blogly.blogly.application.post.dto.PostDetailsResponse;
 import com.blogly.blogly.domain.post.PostId;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

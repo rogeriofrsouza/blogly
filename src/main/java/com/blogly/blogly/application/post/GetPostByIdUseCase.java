@@ -1,5 +1,6 @@
-package com.blogly.blogly.application.post.query;
+package com.blogly.blogly.application.post;
 
+import com.blogly.blogly.application.post.dto.PostDetailsResponse;
 import com.blogly.blogly.domain.post.PostId;
 import com.blogly.blogly.domain.post.PostNotFoundException;
 import com.blogly.blogly.domain.post.PostRepository;

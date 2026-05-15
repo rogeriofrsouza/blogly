@@ -1,4 +1,4 @@
-package com.blogly.blogly.application.post.query;
+package com.blogly.blogly.application.post.dto;
 
 import com.blogly.blogly.domain.post.Post;
 
