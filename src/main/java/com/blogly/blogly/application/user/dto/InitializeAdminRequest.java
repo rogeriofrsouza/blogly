@@ -1,4 +1,4 @@
-package com.blogly.blogly.application.user.initialize;
+package com.blogly.blogly.application.user.dto;
 
 public record InitializeAdminRequest(
         String email,
