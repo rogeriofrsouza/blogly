@@ -1,6 +1,6 @@
 package com.blogly.blogly.domain.post;
 
-import com.blogly.blogly.domain.shared.DomainException;
+import com.blogly.blogly.domain.exception.DomainException;
 
 public class TitleAlreadyExistsException extends DomainException {
 

@@ -1,4 +1,4 @@
-package com.blogly.blogly.domain.shared;
+package com.blogly.blogly.domain.exception;
 
 public abstract class DomainException extends RuntimeException {
 

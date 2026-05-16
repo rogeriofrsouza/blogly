@@ -2,9 +2,9 @@ package com.blogly.blogly.presentation.advice;
 
 import com.blogly.blogly.application.exception.ApplicationException;
 import com.blogly.blogly.application.user.UserAlreadyAdminException;
+import com.blogly.blogly.domain.exception.DomainException;
 import com.blogly.blogly.domain.post.PostNotFoundException;
 import com.blogly.blogly.domain.post.TitleAlreadyExistsException;
-import com.blogly.blogly.domain.shared.DomainException;
 import com.blogly.blogly.domain.user.EmailAlreadyExistsException;
 import com.blogly.blogly.domain.user.InvalidEmailException;
 import com.blogly.blogly.domain.user.InvalidNameException;
