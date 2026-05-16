@@ -1,6 +1,6 @@
 package com.blogly.blogly.application.user;
 
-import com.blogly.blogly.application.shared.ApplicationException;
+import com.blogly.blogly.application.exception.ApplicationException;
 
 public class UserAlreadyAdminException extends ApplicationException {
 

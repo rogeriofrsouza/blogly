@@ -1,6 +1,6 @@
 package com.blogly.blogly.presentation.advice;
 
-import com.blogly.blogly.application.shared.ApplicationException;
+import com.blogly.blogly.application.exception.ApplicationException;
 import com.blogly.blogly.application.user.UserAlreadyAdminException;
 import com.blogly.blogly.domain.post.PostNotFoundException;
 import com.blogly.blogly.domain.post.TitleAlreadyExistsException;
