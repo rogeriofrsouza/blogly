@@ -1,10 +1,10 @@
 package com.blogly.blogly.domain.post;
 
-import com.blogly.blogly.domain.exception.DomainException;
+import com.blogly.blogly.domain.exception.NotFoundException;
 
-public class PostNotFoundException extends DomainException {
+public class PostNotFoundException extends NotFoundException {
 
     public PostNotFoundException(PostId id) {
-        super("Post not found for id: " + id);
+        super(Post.class, id.value());
     }
 }

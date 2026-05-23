@@ -4,7 +4,7 @@ import com.blogly.blogly.application.auth.InvalidCredentialsException;
 import com.blogly.blogly.application.exception.ApplicationException;
 import com.blogly.blogly.application.user.UserAlreadyAdminException;
 import com.blogly.blogly.domain.exception.DomainException;
-import com.blogly.blogly.domain.post.PostNotFoundException;
+import com.blogly.blogly.domain.exception.NotFoundException;
 import com.blogly.blogly.domain.post.TitleAlreadyExistsException;
 import com.blogly.blogly.domain.user.EmailAlreadyExistsException;
 import com.blogly.blogly.domain.user.InvalidEmailException;
@@ -32,8 +32,8 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.BAD_REQUEST, "VALIDATION_ERROR", ex.getMessage());
     }
 
-    @ExceptionHandler(PostNotFoundException.class)
-    public ResponseEntity<ApiError> handleNotFound(PostNotFoundException ex) {
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ApiError> handleNotFound(DomainException ex) {
         log.info("Not found: {}", ex.getMessage());
         return build(HttpStatus.NOT_FOUND, "NOT_FOUND", ex.getMessage());
     }
