@@ -1,4 +1,4 @@
-package com.blogly.blogly.infrastructure.security.config;
+package com.blogly.blogly.infrastructure.security;
 
 import com.blogly.blogly.infrastructure.security.jwt.JwtFilter;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SecurityConfiguration {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, JwtFilter jwtFilter) {
+    SecurityFilterChain filterChain(HttpSecurity http, JwtFilter jwtFilter) {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
