@@ -45,4 +45,8 @@ public class User {
     public boolean isAdmin() {
         return role == Role.ADMIN;
     }
+
+    public boolean verifyPassword(String plainText, PasswordHasher hasher) {
+        return password.matches(plainText, hasher);
+    }
 }
