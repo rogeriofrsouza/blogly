@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
+import com.blogly.blogly.domain.user.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,13 @@ public class JwtService {
         this.verifier = JWT.require(algorithm).build();
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(User user) {
+        Instant now = Instant.now();
+
         return JWT.create()
-                .withSubject(userDetails.getUsername())
-                .withIssuedAt(Instant.now())
-                .withExpiresAt(Instant.now().plusMillis(jwtProperties.expirationMs()))
+                .withSubject(user.getEmail().value())
+                .withIssuedAt(now)
+                .withExpiresAt(now.plusMillis(jwtProperties.expirationMs()))
                 .sign(algorithm);
     }
 
