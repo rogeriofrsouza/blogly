@@ -29,6 +29,10 @@ public class SignInUseCase {
 
         String token = tokenProvider.generateToken(user);
 
-        return new SignInResponse(user.getEmail().value(), user.getRole(), token);
+        return new SignInResponse(
+                user.getId().value(),
+                user.getEmail().value(),
+                user.getRole(),
+                token);
     }
 }
