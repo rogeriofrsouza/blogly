@@ -1,5 +1,6 @@
 package com.blogly.blogly.infrastructure.security.jwt;
 
+import com.blogly.blogly.application.auth.TokenProvider;
 import com.blogly.blogly.infrastructure.security.userdetails.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -22,7 +23,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private static final String BEARER_PREFIX = "Bearer ";
 
-    private final JwtService jwtService;
+    private final TokenProvider tokenProvider;
     private final CustomUserDetailsService userDetailsService;
 
     @Override
@@ -33,7 +34,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if (authHeader != null && authHeader.startsWith(BEARER_PREFIX)) {
             final String token = authHeader.substring(BEARER_PREFIX.length());
-            final String username = jwtService.extractUsername(token);
+            final String username = tokenProvider.extractUsername(token);
 
             loadUserAndSetContext(username, token);
         }
@@ -48,7 +49,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-        if (jwtService.isTokenValid(token, userDetails)) {
+        if (tokenProvider.isTokenValid(token, userDetails.getUsername())) {
             SecurityContext context = SecurityContextHolder.createEmptyContext();
 
             context.setAuthentication(
