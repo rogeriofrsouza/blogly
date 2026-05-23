@@ -1,5 +1,6 @@
 package com.blogly.blogly.presentation.advice;
 
+import com.blogly.blogly.application.auth.InvalidCredentialsException;
 import com.blogly.blogly.application.exception.ApplicationException;
 import com.blogly.blogly.application.user.UserAlreadyAdminException;
 import com.blogly.blogly.domain.exception.DomainException;
@@ -53,6 +54,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiError> handleApplication(ApplicationException ex) {
         log.info("Application error: {}", ex.getMessage());
         return build(HttpStatus.UNPROCESSABLE_CONTENT, "APPLICATION_ERROR", ex.getMessage());
+    }
+
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ApiError> handleUnauthorized(Exception ex) {
+        log.info("Unauthorized: {}", ex.getMessage());
+        return build(HttpStatus.UNAUTHORIZED, "UNAUTHORIZED", ex.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)
