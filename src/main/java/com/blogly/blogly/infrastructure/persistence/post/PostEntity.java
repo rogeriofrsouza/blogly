@@ -2,11 +2,7 @@ package com.blogly.blogly.infrastructure.persistence.post;
 
 import com.blogly.blogly.domain.post.PostStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "post",
         uniqueConstraints = {
@@ -26,4 +22,36 @@ public class PostEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 20)
     private PostStatus status;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public PostStatus getStatus() {
+        return this.status;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setStatus(PostStatus status) {
+        this.status = status;
+    }
 }
