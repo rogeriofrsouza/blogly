@@ -15,7 +15,7 @@ public class CreatePostUseCase {
         var title = new Title(request.title());
 
         if (repository.existsByTitle(title)) {
-            throw new TitleAlreadyExistsException(title.getValue());
+            throw new TitleAlreadyExistsException(title);
         }
 
         var post = Post.create(
