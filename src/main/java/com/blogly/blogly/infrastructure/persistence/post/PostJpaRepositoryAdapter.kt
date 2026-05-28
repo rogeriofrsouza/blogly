@@ -4,6 +4,7 @@ import com.blogly.blogly.domain.post.Post
 import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.post.PostRepository
 import com.blogly.blogly.domain.post.Title
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -13,9 +14,8 @@ class PostJpaRepositoryAdapter(
 ) : PostRepository {
 
     override fun findById(id: PostId): Post? {
-        return repository.findById(id.value)
-            .map { mapper.toDomain(it) }
-            .orElse(null)
+        return repository.findByIdOrNull(id.value)
+            ?.let { mapper.toDomain(it) }
     }
 
     override fun save(post: Post): PostId {
