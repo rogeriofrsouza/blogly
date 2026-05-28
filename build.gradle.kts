@@ -49,6 +49,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-scalar:${springDocVersion}")
     implementation("io.hypersistence:hypersistence-tsid:${tsidVersion}")
+    implementation(kotlin("reflect"))
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.projectlombok:lombok")
