@@ -16,9 +16,9 @@ public class PostMapper {
 
         PostEntity entity = new PostEntity();
 
-        entity.setId(post.getId().value());
-        entity.setTitle(post.getTitle().value());
-        entity.setContent(post.getContent().value());
+        entity.setId(post.getId().getValue());
+        entity.setTitle(post.getTitle().getValue());
+        entity.setContent(post.getContent().getValue());
         entity.setStatus(post.getStatus());
 
         return entity;

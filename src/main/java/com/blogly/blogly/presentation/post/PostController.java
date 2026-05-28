@@ -26,7 +26,7 @@ class PostController {
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(id.value())
+                .buildAndExpand(id.getValue())
                 .toUri();
 
         return ResponseEntity.created(location).build();

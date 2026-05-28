@@ -9,9 +9,9 @@ public record PostDetailsResponse(
 ) {
     public static PostDetailsResponse from(Post post) {
         return new PostDetailsResponse(
-                post.getId().value(),
-                post.getTitle().value(),
-                post.getContent().value()
+                post.getId().getValue(),
+                post.getTitle().getValue(),
+                post.getContent().getValue()
         );
     }
 }

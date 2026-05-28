@@ -7,6 +7,8 @@ import com.blogly.blogly.domain.post.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Component
 public class GetPostByIdUseCase {
@@ -14,7 +16,7 @@ public class GetPostByIdUseCase {
     private final PostRepository repository;
 
     public PostDetailsResponse execute(PostId id) {
-        return repository.findById(id)
+        return Optional.ofNullable(repository.findById(id))
                 .map(PostDetailsResponse::from)
                 .orElseThrow(() -> new PostNotFoundException(id));
     }

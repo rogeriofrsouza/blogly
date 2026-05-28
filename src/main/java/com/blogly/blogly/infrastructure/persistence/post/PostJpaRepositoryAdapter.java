@@ -7,8 +7,6 @@ import com.blogly.blogly.domain.post.Title;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Repository
 public class PostJpaRepositoryAdapter implements PostRepository {
@@ -17,9 +15,10 @@ public class PostJpaRepositoryAdapter implements PostRepository {
     private final PostMapper mapper;
 
     @Override
-    public Optional<Post> findById(PostId id) {
-        return repository.findById(id.value())
-                .map(mapper::toDomain);
+    public Post findById(PostId id) {
+        return repository.findById(id.getValue())
+                .map(mapper::toDomain)
+                .orElse(null);
     }
 
     @Override
@@ -32,6 +31,6 @@ public class PostJpaRepositoryAdapter implements PostRepository {
 
     @Override
     public boolean existsByTitle(Title title) {
-        return repository.existsByTitleIgnoreCase(title.value());
+        return repository.existsByTitleIgnoreCase(title.getValue());
     }
 }
