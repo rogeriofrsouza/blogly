@@ -1,12 +1,10 @@
 package com.blogly.blogly.domain.user
 
-import java.util.*
-
 interface UserRepository {
 
-    fun findById(id: UserId): Optional<User>
+    fun findById(id: UserId): User?
 
-    fun findByEmail(email: Email): Optional<User>
+    fun findByEmail(email: Email): User?
 
     fun existsByEmail(email: Email): Boolean
 

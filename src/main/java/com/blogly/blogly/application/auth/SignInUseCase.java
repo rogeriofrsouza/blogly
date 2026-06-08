@@ -9,6 +9,8 @@ import com.blogly.blogly.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Component
 public class SignInUseCase {
@@ -20,7 +22,7 @@ public class SignInUseCase {
     public SignInResponse execute(SignInRequest request) {
         var email = new Email(request.email());
 
-        User user = userRepository.findByEmail(email)
+        User user = Optional.ofNullable(userRepository.findByEmail(email))
                 .orElseThrow(InvalidCredentialsException::new);
 
         if (!user.verifyPassword(request.password(), passwordHasher)) {

@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Component
 public class InitializeAdminUseCase {
@@ -17,7 +19,7 @@ public class InitializeAdminUseCase {
     public void execute(InitializeAdminRequest request) {
         var email = new Email(request.email());
 
-        User user = userRepository.findByEmail(email)
+        User user = Optional.ofNullable(userRepository.findByEmail(email))
                 .orElse(User.signUp(
                         email,
                         Password.create(request.password(), passwordHasher),

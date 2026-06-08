@@ -7,6 +7,8 @@ import com.blogly.blogly.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Component
 public class GetUserByIdUseCase {
@@ -14,7 +16,7 @@ public class GetUserByIdUseCase {
     private final UserRepository repository;
 
     public UserDetailsResponse execute(UserId id) {
-        return repository.findById(id)
+        return Optional.ofNullable(repository.findById(id))
                 .map(UserDetailsResponse::from)
                 .orElseThrow(() -> new UserNotFoundException(id));
     }

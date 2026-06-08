@@ -7,8 +7,6 @@ import com.blogly.blogly.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Repository
 public class UserJpaRepositoryAdapter implements UserRepository {
@@ -17,15 +15,17 @@ public class UserJpaRepositoryAdapter implements UserRepository {
     private final UserDomainMapper mapper;
 
     @Override
-    public Optional<User> findById(UserId id) {
+    public User findById(UserId id) {
         return repository.findById(id.getValue())
-                .map(mapper::toDomain);
+                .map(mapper::toDomain)
+                .orElse(null);
     }
 
     @Override
-    public Optional<User> findByEmail(Email email) {
+    public User findByEmail(Email email) {
         return repository.findByEmail(email.getValue())
-                .map(mapper::toDomain);
+                .map(mapper::toDomain)
+                .orElse(null);
     }
 
     @Override
