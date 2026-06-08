@@ -10,10 +10,10 @@ public record UserDetailsResponse(
 ) {
     public static UserDetailsResponse from(User user) {
         return new UserDetailsResponse(
-                user.getId().value(),
-                user.getEmail().value(),
+                user.getId().getValue(),
+                user.getEmail().getValue(),
                 user.getRole().name(),
-                user.getName().value()
+                user.getName().getValue()
         );
     }
 }

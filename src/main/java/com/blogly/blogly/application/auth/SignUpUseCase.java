@@ -19,7 +19,7 @@ public class SignUpUseCase {
         var email = new Email(request.email());
 
         if (userRepository.existsByEmail(email)) {
-            throw new EmailAlreadyExistsException(email.value());
+            throw new EmailAlreadyExistsException(email.getValue());
         }
 
         var user = User.signUp(
@@ -30,6 +30,6 @@ public class SignUpUseCase {
 
         userRepository.save(user);
 
-        return new SignUpResponse(user.getId().value(), user.getEmail().value(), user.getRole());
+        return new SignUpResponse(user.getId().getValue(), user.getEmail().getValue(), user.getRole());
     }
 }

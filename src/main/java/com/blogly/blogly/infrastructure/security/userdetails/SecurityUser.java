@@ -22,11 +22,11 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword().hashedValue();
+        return user.getPassword().getHashedValue();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail().value();
+        return user.getEmail().getValue();
     }
 }

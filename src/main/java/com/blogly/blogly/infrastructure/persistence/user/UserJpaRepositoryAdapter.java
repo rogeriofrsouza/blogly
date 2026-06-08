@@ -18,19 +18,19 @@ public class UserJpaRepositoryAdapter implements UserRepository {
 
     @Override
     public Optional<User> findById(UserId id) {
-        return repository.findById(id.value())
+        return repository.findById(id.getValue())
                 .map(mapper::toDomain);
     }
 
     @Override
     public Optional<User> findByEmail(Email email) {
-        return repository.findByEmail(email.value())
+        return repository.findByEmail(email.getValue())
                 .map(mapper::toDomain);
     }
 
     @Override
     public boolean existsByEmail(Email email) {
-        return repository.existsByEmail(email.value());
+        return repository.existsByEmail(email.getValue());
     }
 
     @Override

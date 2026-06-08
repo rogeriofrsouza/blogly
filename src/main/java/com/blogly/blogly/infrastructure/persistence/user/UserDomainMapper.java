@@ -8,10 +8,10 @@ public class UserDomainMapper {
 
     public UserEntity toEntity(User user) {
         UserEntity entity = new UserEntity();
-        entity.setId(user.getId().value());
-        entity.setEmail(user.getEmail().value());
-        entity.setPassword(user.getPassword().hashedValue());
-        entity.setName(user.getName().value());
+        entity.setId(user.getId().getValue());
+        entity.setEmail(user.getEmail().getValue());
+        entity.setPassword(user.getPassword().getHashedValue());
+        entity.setName(user.getName().getValue());
         entity.setRole(user.getRole());
 
         return entity;

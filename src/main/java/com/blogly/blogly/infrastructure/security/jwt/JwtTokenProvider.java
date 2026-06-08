@@ -29,7 +29,7 @@ class JwtTokenProvider implements TokenProvider {
         Instant now = Instant.now();
 
         return JWT.create()
-                .withSubject(user.getEmail().value())
+                .withSubject(user.getEmail().getValue())
                 .withIssuedAt(now)
                 .withExpiresAt(now.plusMillis(jwtProperties.expirationMs()))
                 .sign(algorithm);
