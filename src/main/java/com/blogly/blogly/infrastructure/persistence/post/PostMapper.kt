@@ -20,12 +20,11 @@ class PostMapper {
         return entity
     }
 
-    fun toDomain(entity: PostEntity): Post {
-        return Post(
-            PostId(entity.id),
+    fun toDomain(entity: PostEntity) =
+        Post(
             Title(entity.title),
             Content(entity.content),
+            PostId(entity.id),
             entity.status
         )
-    }
 }
