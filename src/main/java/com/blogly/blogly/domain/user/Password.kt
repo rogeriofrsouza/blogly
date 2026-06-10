@@ -7,7 +7,6 @@ data class Password(val hashedValue: String) {
     companion object {
         private const val MIN_LENGTH = 8
 
-        @JvmStatic
         fun create(plainText: String, hasher: PasswordHasher): Password {
             if (plainText.length < MIN_LENGTH) {
                 throw InvalidPasswordException("Password must be at least $MIN_LENGTH characters")
