@@ -29,7 +29,7 @@ class AuthController {
 
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/api/users/{id}")
-                .buildAndExpand(response.id())
+                .buildAndExpand(response.getId())
                 .toUri();
 
         return ResponseEntity.created(location).body(response);
