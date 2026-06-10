@@ -2,11 +2,7 @@ package com.blogly.blogly.infrastructure.persistence.user;
 
 import com.blogly.blogly.domain.user.Role;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -26,4 +22,44 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Role role;
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Role getRole() {
+        return this.role;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
