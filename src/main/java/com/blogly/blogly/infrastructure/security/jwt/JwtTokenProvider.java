@@ -20,7 +20,7 @@ class JwtTokenProvider implements TokenProvider {
 
     public JwtTokenProvider(JwtProperties jwtProperties) {
         this.jwtProperties = jwtProperties;
-        this.algorithm = Algorithm.HMAC256(jwtProperties.secret());
+        this.algorithm = Algorithm.HMAC256(jwtProperties.getSecret());
         this.verifier = JWT.require(algorithm).build();
     }
 
@@ -31,7 +31,7 @@ class JwtTokenProvider implements TokenProvider {
         return JWT.create()
                 .withSubject(user.getEmail().getValue())
                 .withIssuedAt(now)
-                .withExpiresAt(now.plusMillis(jwtProperties.expirationMs()))
+                .withExpiresAt(now.plusMillis(jwtProperties.getExpirationMs()))
                 .sign(algorithm);
     }
 
