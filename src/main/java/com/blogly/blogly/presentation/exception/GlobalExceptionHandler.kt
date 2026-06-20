@@ -13,6 +13,7 @@ import com.blogly.blogly.domain.user.InvalidPasswordException
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import kotlin.time.Clock
@@ -45,6 +46,21 @@ class GlobalExceptionHandler {
     @ExceptionHandler(InvalidCredentialsException::class)
     fun handleUnauthorized(ex: RuntimeException): ResponseEntity<ApiError> =
         build(HttpStatus.UNAUTHORIZED, ex)
+
+    @ExceptionHandler(MethodArgumentNotValidException::class)
+    fun handleValidation(ex: MethodArgumentNotValidException): ResponseEntity<ApiError> {
+        val errors = ex.bindingResult.fieldErrors.map { error ->
+            "${error.field}: ${error.defaultMessage}"
+        }
+        val status = HttpStatus.BAD_REQUEST
+        log.error("{}: {}", status, ex.message)
+
+        return ResponseEntity
+            .status(status)
+            .body(
+                ApiError(Clock.System.now(), status.value(), "Validation failed", errors)
+            )
+    }
 
     @ExceptionHandler(RuntimeException::class)
     fun handleGeneric(ex: RuntimeException): ResponseEntity<ApiError> =
