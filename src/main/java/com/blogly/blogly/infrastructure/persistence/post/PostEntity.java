@@ -23,6 +23,9 @@ public class PostEntity {
     @Column(name = "status", length = 20)
     private PostStatus status;
 
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
     public Long getId() {
         return this.id;
     }
@@ -53,5 +56,13 @@ public class PostEntity {
 
     public void setStatus(PostStatus status) {
         this.status = status;
+    }
+
+    public Long getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
