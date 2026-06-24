@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class PostJpaRepositoryAdapter(
     private val repository: PostJpaRepository,
-    private val mapper: PostMapper
+    private val mapper: PostDomainMapper
 ) : PostRepository {
 
     override fun findById(id: PostId): Post? {

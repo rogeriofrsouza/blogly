@@ -8,19 +8,16 @@ import com.blogly.blogly.domain.user.UserId
 import org.springframework.stereotype.Component
 
 @Component
-class PostMapper {
+class PostDomainMapper {
 
-    fun toEntity(post: Post): PostEntity {
-        val entity = PostEntity()
-
-        entity.id = post.id.value
-        entity.title = post.title.value
-        entity.content = post.content.value
-        entity.status = post.status
-        entity.userId = post.userId.value
-
-        return entity
-    }
+    fun toEntity(post: Post) =
+        PostEntity().apply {
+            id = post.id.value
+            title = post.title.value
+            content = post.content.value
+            status = post.status
+            userId = post.userId.value
+        }
 
     fun toDomain(entity: PostEntity) =
         Post(
