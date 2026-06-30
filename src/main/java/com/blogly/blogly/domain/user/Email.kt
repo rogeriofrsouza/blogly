@@ -1,5 +1,7 @@
 package com.blogly.blogly.domain.user
 
+import com.blogly.blogly.domain.user.exception.InvalidEmailException
+
 data class Email(val value: String) {
     init {
         if (EMAIL_PATTERN.matches(value).not()) {

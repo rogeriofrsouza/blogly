@@ -1,5 +1,7 @@
 package com.blogly.blogly.domain.user
 
+import com.blogly.blogly.domain.user.exception.InvalidPasswordException
+
 data class Password(val hashedValue: String) {
 
     fun matches(plainText: String, hasher: PasswordHasher) = hasher.matches(plainText, hashedValue)

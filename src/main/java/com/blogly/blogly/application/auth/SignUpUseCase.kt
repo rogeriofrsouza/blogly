@@ -3,6 +3,7 @@ package com.blogly.blogly.application.auth
 import com.blogly.blogly.application.auth.dto.SignUpRequest
 import com.blogly.blogly.application.auth.dto.SignUpResponse
 import com.blogly.blogly.domain.user.*
+import com.blogly.blogly.domain.user.exception.EmailAlreadyExistsException
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 

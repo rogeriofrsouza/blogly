@@ -1,5 +1,7 @@
 package com.blogly.blogly.domain.user
 
+import com.blogly.blogly.domain.user.exception.InvalidNameException
+
 data class Name(val value: String) {
     init {
         if (value.length !in 3..50) {

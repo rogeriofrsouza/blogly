@@ -6,10 +6,10 @@ import com.blogly.blogly.application.user.UserAlreadyAdminException
 import com.blogly.blogly.domain.exception.DomainException
 import com.blogly.blogly.domain.exception.NotFoundException
 import com.blogly.blogly.domain.post.TitleAlreadyExistsException
-import com.blogly.blogly.domain.user.EmailAlreadyExistsException
-import com.blogly.blogly.domain.user.InvalidEmailException
-import com.blogly.blogly.domain.user.InvalidNameException
-import com.blogly.blogly.domain.user.InvalidPasswordException
+import com.blogly.blogly.domain.user.exception.EmailAlreadyExistsException
+import com.blogly.blogly.domain.user.exception.InvalidEmailException
+import com.blogly.blogly.domain.user.exception.InvalidNameException
+import com.blogly.blogly.domain.user.exception.InvalidPasswordException
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
