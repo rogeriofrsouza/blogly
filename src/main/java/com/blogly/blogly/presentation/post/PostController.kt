@@ -1,6 +1,7 @@
 package com.blogly.blogly.presentation.post
 
 import com.blogly.blogly.application.post.CreatePostUseCase
+import com.blogly.blogly.application.post.FindAllPostsUseCase
 import com.blogly.blogly.application.post.GetPostByIdUseCase
 import com.blogly.blogly.application.post.dto.PostDetailsResponse
 import com.blogly.blogly.domain.post.PostId
@@ -13,7 +14,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 @RestController
 class PostController(
     private val createUseCase: CreatePostUseCase,
-    private val getByIdUseCase: GetPostByIdUseCase
+    private val getByIdUseCase: GetPostByIdUseCase,
+    private val findAllPostsUseCase: FindAllPostsUseCase
 ) {
     @PostMapping
     fun create(@Valid @RequestBody dto: CreatePostRequestDto): ResponseEntity<Void> {
@@ -30,4 +32,7 @@ class PostController(
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long): PostDetailsResponse =
         getByIdUseCase.execute(PostId(id))
+
+    @GetMapping
+    fun findAll(): List<PostDetailsResponse> = findAllPostsUseCase.execute()
 }
