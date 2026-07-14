@@ -17,6 +17,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import kotlin.time.Clock
+import kotlin.time.toJavaInstant
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
@@ -58,7 +59,7 @@ class GlobalExceptionHandler {
         return ResponseEntity
             .status(status)
             .body(
-                ApiError(Clock.System.now(), status.value(), "Validation failed", errors)
+                ApiError(Clock.System.now().toJavaInstant(), status.value(), "Validation failed", errors)
             )
     }
 
@@ -72,7 +73,7 @@ class GlobalExceptionHandler {
         return ResponseEntity
             .status(status)
             .body(
-                ApiError(Clock.System.now(), status.value(), exception.message ?: "Unknown error")
+                ApiError(Clock.System.now().toJavaInstant(), status.value(), exception.message ?: "Unknown error")
             )
     }
 

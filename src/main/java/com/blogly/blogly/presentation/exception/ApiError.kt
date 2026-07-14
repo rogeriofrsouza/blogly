@@ -1,7 +1,7 @@
 package com.blogly.blogly.presentation.exception
 
 import com.fasterxml.jackson.annotation.JsonInclude
-import kotlin.time.Instant
+import java.time.Instant
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class ApiError(
