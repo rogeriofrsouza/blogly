@@ -3,20 +3,20 @@ package com.blogly.blogly.presentation.auth;
 import com.blogly.blogly.application.auth.dto.SignUpRequest;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.Size;
 
 public record SignUpRequestDto(
         @Email
         @NotBlank
-        @Length(max = 50)
+        @Size(max = 50)
         String email,
 
         @NotBlank
-        @Length(min = 8, max = 150)
+        @Size(min = 8, max = 150)
         String password,
 
         @NotBlank
-        @Length(max = 100)
+        @Size(max = 100)
         String name
 ) {
     public SignUpRequest toRequest() {
