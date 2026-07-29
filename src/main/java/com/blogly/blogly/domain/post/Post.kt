@@ -9,4 +9,6 @@ class Post(
     val userId: UserId,
     val id: PostId = PostId(TSID.fast().toLong()),
     val status: PostStatus = PostStatus.DRAFT
-)
+) {
+    fun canBeCommentedOn(): Boolean = status == PostStatus.PUBLISHED
+}
