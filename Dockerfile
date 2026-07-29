@@ -25,7 +25,7 @@ RUN cp -r build/extracted/dependencies/. ./
 RUN cp -r build/extracted/spring-boot-loader/. ./
 RUN cp -r build/extracted/snapshot-dependencies/. ./
 RUN cp -r build/extracted/application/. ./
-ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
 CMD [ "java", "org.springframework.boot.loader.launch.JarLauncher" ]
 
 FROM eclipse-temurin:25-jre AS final
