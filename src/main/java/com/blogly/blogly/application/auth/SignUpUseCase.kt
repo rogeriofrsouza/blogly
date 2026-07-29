@@ -29,7 +29,7 @@ class SignUpUseCase(
         userRepository.save(user)
 
         return SignUpResponse(
-            user.id.value,
+            user.id.value.toString(),
             user.email.value,
             user.role
         )

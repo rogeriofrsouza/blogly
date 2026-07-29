@@ -26,7 +26,7 @@ class SignInUseCase(
         val token = tokenProvider.generateToken(user)
 
         return SignInResponse(
-            user.id.value,
+            user.id.value.toString(),
             user.email.value,
             user.role,
             token
