@@ -18,7 +18,11 @@ class CreatePostUseCase(
         }
 
         val user = userProvider.currentUser()
-        val post = Post(title, Content(request.content), user.id)
+        val post = Post(
+            title = title,
+            content = Content(request.content),
+            userId = user.id
+        )
 
         return repository.save(post)
     }

@@ -1,7 +1,5 @@
 package com.blogly.blogly.domain.user
 
-import io.hypersistence.tsid.TSID
-
 class User(
     val id: UserId,
     val email: Email,
@@ -22,7 +20,7 @@ class User(
         @JvmStatic
         fun signUp(email: Email, password: Password, name: Name) =
             User(
-                UserId(TSID.fast().toLong()),
+                UserId.generate(),
                 email,
                 password,
                 name,
