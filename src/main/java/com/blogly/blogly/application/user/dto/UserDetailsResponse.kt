@@ -1,6 +1,7 @@
 package com.blogly.blogly.application.user.dto
 
 import com.blogly.blogly.domain.user.User
+import io.hypersistence.tsid.TSID
 
 data class UserDetailsResponse(
     val id: String,
@@ -11,7 +12,7 @@ data class UserDetailsResponse(
     companion object {
         fun from(user: User) =
             UserDetailsResponse(
-                user.id.value.toString(),
+                TSID(user.id.value).toLowerCase(),
                 user.email.value,
                 user.role.name,
                 user.name.value

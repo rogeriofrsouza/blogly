@@ -5,6 +5,7 @@ import com.blogly.blogly.application.auth.dto.SignInResponse
 import com.blogly.blogly.domain.user.Email
 import com.blogly.blogly.domain.user.PasswordHasher
 import com.blogly.blogly.domain.user.UserRepository
+import io.hypersistence.tsid.TSID
 import org.springframework.stereotype.Component
 
 @Component
@@ -26,7 +27,7 @@ class SignInUseCase(
         val token = tokenProvider.generateToken(user)
 
         return SignInResponse(
-            user.id.value.toString(),
+            TSID(user.id.value).toLowerCase(),
             user.email.value,
             user.role,
             token

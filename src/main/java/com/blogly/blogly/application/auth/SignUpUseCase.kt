@@ -4,6 +4,7 @@ import com.blogly.blogly.application.auth.dto.SignUpRequest
 import com.blogly.blogly.application.auth.dto.SignUpResponse
 import com.blogly.blogly.domain.user.*
 import com.blogly.blogly.domain.user.exception.EmailAlreadyExistsException
+import io.hypersistence.tsid.TSID
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
@@ -29,7 +30,7 @@ class SignUpUseCase(
         userRepository.save(user)
 
         return SignUpResponse(
-            user.id.value.toString(),
+            TSID(user.id.value).toLowerCase(),
             user.email.value,
             user.role
         )
