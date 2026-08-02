@@ -15,10 +15,10 @@ class InitializeAdminUseCase(
         val email = Email(request.email)
 
         val user = userRepository.findByEmail(email)
-            ?: User.signUp(
-                email,
-                Password.create(request.password, passwordHasher),
-                Name(request.name)
+            ?: User(
+                email = email,
+                password = Password.create(request.password, passwordHasher),
+                name = Name(request.name)
             )
 
         if (user.isAdmin) {

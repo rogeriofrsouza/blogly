@@ -20,10 +20,10 @@ class SignUpUseCase(
             throw EmailAlreadyExistsException(email.value)
         }
 
-        val user = User.signUp(
-            email,
-            Password.create(request.password, passwordHasher),
-            Name(request.name)
+        val user = User(
+            email = email,
+            password = Password.create(request.password, passwordHasher),
+            name = Name(request.name)
         )
 
         userRepository.save(user)

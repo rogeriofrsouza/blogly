@@ -1,11 +1,11 @@
 package com.blogly.blogly.domain.user
 
 class User(
-    val id: UserId,
+    val id: UserId = UserId.generate(),
     val email: Email,
     val password: Password,
     val name: Name,
-    var role: Role
+    var role: Role = Role.USER
 ) {
     fun promoteToAdmin() {
         role = Role.ADMIN
@@ -15,16 +15,4 @@ class User(
         get() = role == Role.ADMIN
 
     fun verifyPassword(plainText: String, hasher: PasswordHasher) = password.matches(plainText, hasher)
-
-    companion object {
-        @JvmStatic
-        fun signUp(email: Email, password: Password, name: Name) =
-            User(
-                UserId.generate(),
-                email,
-                password,
-                name,
-                Role.USER
-            )
-    }
 }
