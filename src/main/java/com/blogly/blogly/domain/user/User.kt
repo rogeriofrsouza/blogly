@@ -1,7 +1,7 @@
 package com.blogly.blogly.domain.user
 
 class User(
-    val id: UserId = UserId.generate(),
+    val id: UserId,
     val email: Email,
     val password: Password,
     val name: Name,

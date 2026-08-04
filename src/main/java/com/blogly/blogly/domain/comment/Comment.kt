@@ -6,7 +6,7 @@ import kotlin.time.Clock
 import kotlin.time.Instant
 
 class Comment(
-    val id: CommentId = CommentId.generate(),
+    val id: CommentId,
     val body: CommentBody,
     val postId: PostId,
     val userId: UserId,

@@ -2,6 +2,7 @@ package com.blogly.blogly.application.comment
 
 import com.blogly.blogly.application.auth.UserProvider
 import com.blogly.blogly.application.comment.dto.CreateCommentRequest
+import com.blogly.blogly.application.shared.IdProvider
 import com.blogly.blogly.domain.comment.Comment
 import com.blogly.blogly.domain.comment.CommentBody
 import com.blogly.blogly.domain.comment.CommentId
@@ -16,9 +17,11 @@ import org.springframework.stereotype.Component
 class CreateCommentUseCase(
     private val repository: CommentRepository,
     private val postRepository: PostRepository,
-    private val userProvider: UserProvider
+    private val userProvider: UserProvider,
+    private val idProvider: IdProvider
 ) {
-    fun execute(postId: PostId, request: CreateCommentRequest): CommentId {
+    fun execute(postIdRaw: String, request: CreateCommentRequest): String {
+        val postId = PostId(idProvider.decode(postIdRaw))
         val post = postRepository.findById(postId) ?: throw PostNotFoundException(postId)
 
         if (!post.canBeCommentedOn()) {
@@ -28,11 +31,12 @@ class CreateCommentUseCase(
         val user = userProvider.currentUser()
 
         val comment = Comment(
+            id = CommentId(idProvider.generate()),
             body = CommentBody(request.body),
             postId = postId,
             userId = user.id
         )
 
-        return repository.save(comment)
+        return idProvider.encode(repository.save(comment).value)
     }
 }

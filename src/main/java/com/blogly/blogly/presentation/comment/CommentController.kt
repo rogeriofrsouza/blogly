@@ -1,7 +1,6 @@
 package com.blogly.blogly.presentation.comment
 
 import com.blogly.blogly.application.comment.CreateCommentUseCase
-import com.blogly.blogly.domain.post.PostId
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -14,14 +13,14 @@ class CommentController(
 ) {
     @PostMapping
     fun create(
-        @PathVariable postId: Long,
+        @PathVariable postId: String,
         @Valid @RequestBody dto: CreateCommentDto
     ): ResponseEntity<Void> {
-        val id = createUseCase.execute(PostId(postId), dto.toRequest())
+        val id = createUseCase.execute(postId, dto.toRequest())
 
         val location = ServletUriComponentsBuilder.fromCurrentRequest()
             .path("/{id}")
-            .buildAndExpand(id.value)
+            .buildAndExpand(id)
             .toUri()
 
         return ResponseEntity.created(location).build()
