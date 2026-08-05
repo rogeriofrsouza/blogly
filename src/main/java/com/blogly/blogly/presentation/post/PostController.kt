@@ -4,6 +4,8 @@ import com.blogly.blogly.application.post.CreatePostUseCase
 import com.blogly.blogly.application.post.FindAllPostsUseCase
 import com.blogly.blogly.application.post.GetPostByIdUseCase
 import com.blogly.blogly.application.post.dto.PostDetailsResponse
+import com.blogly.blogly.application.shared.TsidCodec
+import com.blogly.blogly.domain.post.PostId
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -22,7 +24,7 @@ class PostController(
 
         val location = ServletUriComponentsBuilder.fromCurrentRequest()
             .path("/{id}")
-            .buildAndExpand(id)
+            .buildAndExpand(TsidCodec.encode(id.value))
             .toUri()
 
         return ResponseEntity.created(location).build()
@@ -30,7 +32,7 @@ class PostController(
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: String): PostDetailsResponse =
-        getByIdUseCase.execute(id)
+        getByIdUseCase.execute(PostId(TsidCodec.decode(id)))
 
     @GetMapping
     fun findAll(): List<PostDetailsResponse> = findAllPostsUseCase.execute()

@@ -1,17 +1,16 @@
 package com.blogly.blogly.application.post
 
 import com.blogly.blogly.application.post.dto.PostDetailsResponse
-import com.blogly.blogly.application.shared.IdProvider
+import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.domain.post.Post
 import org.springframework.stereotype.Component
 
 @Component
-class PostResponseMapper(
-    private val idProvider: IdProvider
-) {
+class PostResponseMapper {
+
     fun toDetailsResponse(post: Post) =
         PostDetailsResponse(
-            id = idProvider.encode(post.id.value),
+            id = TsidCodec.encode(post.id.value),
             title = post.title.value,
             content = post.content.value
         )

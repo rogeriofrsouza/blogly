@@ -2,7 +2,8 @@ package com.blogly.blogly.application.auth
 
 import com.blogly.blogly.application.auth.dto.SignUpRequest
 import com.blogly.blogly.application.auth.dto.SignUpResponse
-import com.blogly.blogly.application.shared.IdProvider
+import com.blogly.blogly.application.shared.IdGenerator
+import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.domain.user.*
 import com.blogly.blogly.domain.user.exception.EmailAlreadyExistsException
 import org.springframework.stereotype.Component
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
 class SignUpUseCase(
     private val userRepository: UserRepository,
     private val passwordHasher: PasswordHasher,
-    private val idProvider: IdProvider
+    private val idGenerator: IdGenerator
 ) {
     @Transactional
     fun execute(request: SignUpRequest): SignUpResponse {
@@ -23,7 +24,7 @@ class SignUpUseCase(
         }
 
         val user = User(
-            id = UserId(idProvider.generate()),
+            id = UserId(idGenerator.generate()),
             email = email,
             password = Password.create(request.password, passwordHasher),
             name = Name(request.name)
@@ -32,7 +33,7 @@ class SignUpUseCase(
         userRepository.save(user)
 
         return SignUpResponse(
-            idProvider.encode(user.id.value),
+            TsidCodec.encode(user.id.value),
             user.email.value,
             user.role
         )
