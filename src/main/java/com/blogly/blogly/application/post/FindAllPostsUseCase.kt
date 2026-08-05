@@ -1,7 +1,7 @@
 package com.blogly.blogly.application.post
 
-import com.blogly.blogly.application.auth.UserProvider
 import com.blogly.blogly.application.post.dto.PostDetailsResponse
+import com.blogly.blogly.application.shared.UserProvider
 import com.blogly.blogly.domain.post.PostRepository
 import org.springframework.stereotype.Component
 

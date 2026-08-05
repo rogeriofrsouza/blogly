@@ -1,8 +1,8 @@
 package com.blogly.blogly.application.post
 
-import com.blogly.blogly.application.auth.UserProvider
 import com.blogly.blogly.application.post.dto.CreatePostRequest
 import com.blogly.blogly.application.shared.IdProvider
+import com.blogly.blogly.application.shared.UserProvider
 import com.blogly.blogly.domain.post.*
 import org.springframework.stereotype.Component
 

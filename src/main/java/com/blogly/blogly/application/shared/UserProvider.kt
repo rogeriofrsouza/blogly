@@ -1,4 +1,4 @@
-package com.blogly.blogly.application.auth
+package com.blogly.blogly.application.shared
 
 import com.blogly.blogly.domain.user.User
 

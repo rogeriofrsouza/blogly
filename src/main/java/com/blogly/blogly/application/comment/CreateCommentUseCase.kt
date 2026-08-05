@@ -1,8 +1,8 @@
 package com.blogly.blogly.application.comment
 
-import com.blogly.blogly.application.auth.UserProvider
 import com.blogly.blogly.application.comment.dto.CreateCommentRequest
 import com.blogly.blogly.application.shared.IdProvider
+import com.blogly.blogly.application.shared.UserProvider
 import com.blogly.blogly.domain.comment.Comment
 import com.blogly.blogly.domain.comment.CommentBody
 import com.blogly.blogly.domain.comment.CommentId

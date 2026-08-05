@@ -1,6 +1,6 @@
 package com.blogly.blogly.infrastructure.security
 
-import com.blogly.blogly.application.auth.UserProvider
+import com.blogly.blogly.application.shared.UserProvider
 import com.blogly.blogly.domain.user.User
 import com.blogly.blogly.infrastructure.security.userdetails.SecurityUser
 import org.springframework.security.core.context.SecurityContextHolder
