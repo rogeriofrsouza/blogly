@@ -8,13 +8,12 @@ import org.springframework.stereotype.Component
 @Component
 class FindAllPostsUseCase(
     private val repository: PostRepository,
-    private val userProvider: UserProvider,
-    private val responseMapper: PostResponseMapper
+    private val userProvider: UserProvider
 ) {
     fun execute(): List<PostDetailsResponse> {
         val user = userProvider.currentUser()
 
         return repository.findByUserId(user.id)
-            .map(responseMapper::toDetailsResponse)
+            .map(PostDetailsResponse::from)
     }
 }

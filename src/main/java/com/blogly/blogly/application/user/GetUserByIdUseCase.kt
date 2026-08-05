@@ -8,11 +8,10 @@ import org.springframework.stereotype.Component
 
 @Component
 class GetUserByIdUseCase(
-    private val repository: UserRepository,
-    private val responseMapper: UserResponseMapper
+    private val repository: UserRepository
 ) {
     fun execute(userId: UserId): UserDetailsResponse =
         repository.findById(userId)
-            ?.let(responseMapper::toDetailsResponse)
+            ?.let(UserDetailsResponse::from)
             ?: throw UserNotFoundException(userId)
 }

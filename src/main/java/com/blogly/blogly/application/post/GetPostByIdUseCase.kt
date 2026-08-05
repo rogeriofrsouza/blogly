@@ -8,11 +8,10 @@ import org.springframework.stereotype.Component
 
 @Component
 class GetPostByIdUseCase(
-    private val repository: PostRepository,
-    private val responseMapper: PostResponseMapper
+    private val repository: PostRepository
 ) {
     fun execute(postId: PostId): PostDetailsResponse =
         repository.findById(postId)
-            ?.let(responseMapper::toDetailsResponse)
+            ?.let(PostDetailsResponse::from)
             ?: throw PostNotFoundException(postId)
 }
