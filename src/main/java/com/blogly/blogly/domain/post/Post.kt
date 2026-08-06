@@ -7,7 +7,7 @@ class Post(
     val title: Title,
     val content: Content,
     val userId: UserId,
-    val status: PostStatus = PostStatus.DRAFT
+    val status: PostStatus = PostStatus.PUBLISHED
 ) {
     fun canBeCommentedOn(): Boolean = status == PostStatus.PUBLISHED
 }
