@@ -3,10 +3,12 @@ package com.blogly.blogly.presentation.post
 import com.blogly.blogly.application.post.CreatePostUseCase
 import com.blogly.blogly.application.post.FindAllPostsUseCase
 import com.blogly.blogly.application.post.GetPostByIdUseCase
+import com.blogly.blogly.application.post.UpdatePostUseCase
 import com.blogly.blogly.application.post.dto.PostDetailsResponse
 import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.domain.post.PostId
 import jakarta.validation.Valid
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
@@ -16,7 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 class PostController(
     private val createUseCase: CreatePostUseCase,
     private val getByIdUseCase: GetPostByIdUseCase,
-    private val findAllPostsUseCase: FindAllPostsUseCase
+    private val findAllPostsUseCase: FindAllPostsUseCase,
+    private val updateUseCase: UpdatePostUseCase
 ) {
     @PostMapping
     fun create(@Valid @RequestBody dto: CreatePostRequestDto): ResponseEntity<Void> {
@@ -36,4 +39,11 @@ class PostController(
 
     @GetMapping
     fun findAll(): List<PostDetailsResponse> = findAllPostsUseCase.execute()
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{id}")
+    fun update(
+        @PathVariable id: String,
+        @Valid @RequestBody dto: UpdatePostRequestDto
+    ) = updateUseCase.execute(PostId(TsidCodec.decode(id)), dto.toRequest())
 }

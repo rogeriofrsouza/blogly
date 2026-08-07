@@ -5,6 +5,7 @@ import com.blogly.blogly.application.exception.ApplicationException
 import com.blogly.blogly.application.user.UserAlreadyAdminException
 import com.blogly.blogly.domain.exception.DomainException
 import com.blogly.blogly.domain.exception.NotFoundException
+import com.blogly.blogly.domain.exception.NotOwnedException
 import com.blogly.blogly.domain.post.TitleAlreadyExistsException
 import com.blogly.blogly.domain.user.exception.EmailAlreadyExistsException
 import com.blogly.blogly.domain.user.exception.InvalidEmailException
@@ -39,6 +40,10 @@ class GlobalExceptionHandler {
     )
     fun handleConflict(ex: RuntimeException): ResponseEntity<ApiError> =
         build(HttpStatus.CONFLICT, ex)
+
+    @ExceptionHandler(NotOwnedException::class)
+    fun handleForbidden(ex: NotOwnedException): ResponseEntity<ApiError> =
+        build(HttpStatus.FORBIDDEN, ex)
 
     @ExceptionHandler(DomainException::class)
     fun handleDomain(ex: DomainException): ResponseEntity<ApiError> =
