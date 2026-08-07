@@ -28,4 +28,8 @@ class CommentJpaRepositoryAdapter(
 
         return CommentId(entity.id)
     }
+
+    override fun deleteById(id: CommentId) {
+        repository.deleteById(id.value)
+    }
 }

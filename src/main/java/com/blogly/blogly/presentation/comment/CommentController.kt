@@ -1,6 +1,7 @@
 package com.blogly.blogly.presentation.comment
 
 import com.blogly.blogly.application.comment.CreateCommentUseCase
+import com.blogly.blogly.application.comment.DeleteCommentUseCase
 import com.blogly.blogly.application.comment.FindAllCommentsUseCase
 import com.blogly.blogly.application.comment.UpdateCommentUseCase
 import com.blogly.blogly.application.comment.dto.CommentDetailsResponse
@@ -18,7 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 class CommentController(
     private val createUseCase: CreateCommentUseCase,
     private val findAllUseCase: FindAllCommentsUseCase,
-    private val updateUseCase: UpdateCommentUseCase
+    private val updateUseCase: UpdateCommentUseCase,
+    private val deleteUseCase: DeleteCommentUseCase
 ) {
     @PostMapping
     fun create(
@@ -49,5 +51,15 @@ class CommentController(
         PostId(TsidCodec.decode(postId)),
         CommentId(TsidCodec.decode(id)),
         dto.toRequest()
+    )
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    fun delete(
+        @PathVariable postId: String,
+        @PathVariable id: String
+    ) = deleteUseCase.execute(
+        PostId(TsidCodec.decode(postId)),
+        CommentId(TsidCodec.decode(id))
     )
 }

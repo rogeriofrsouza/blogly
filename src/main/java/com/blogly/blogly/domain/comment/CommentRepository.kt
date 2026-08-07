@@ -9,4 +9,6 @@ interface CommentRepository {
     fun findByPostId(postId: PostId): List<Comment>
 
     fun save(comment: Comment): CommentId
+
+    fun deleteById(id: CommentId)
 }
