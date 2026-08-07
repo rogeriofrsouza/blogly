@@ -3,6 +3,8 @@ package com.blogly.blogly.infrastructure.persistence.post;
 import com.blogly.blogly.domain.post.PostStatus;
 import jakarta.persistence.*;
 
+import java.time.Instant;
+
 @Entity
 @Table(name = "post",
         uniqueConstraints = {
@@ -25,6 +27,12 @@ public class PostEntity {
 
     @Column(name = "user_id", nullable = false)
     private Long userId;
+
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
 
     public Long getId() {
         return this.id;
@@ -64,5 +72,21 @@ public class PostEntity {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Instant getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return this.updatedAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

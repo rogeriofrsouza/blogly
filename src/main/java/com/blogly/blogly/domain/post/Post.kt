@@ -1,13 +1,17 @@
 package com.blogly.blogly.domain.post
 
 import com.blogly.blogly.domain.user.UserId
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 class Post(
     val id: PostId,
     var title: Title,
     var content: Content,
     val userId: UserId,
-    val status: PostStatus = PostStatus.PUBLISHED
+    val status: PostStatus = PostStatus.PUBLISHED,
+    val createdAt: Instant = Clock.System.now(),
+    var updatedAt: Instant = createdAt
 ) {
     fun canBeCommentedOn(): Boolean = status == PostStatus.PUBLISHED
 
@@ -17,5 +21,6 @@ class Post(
         check(status != PostStatus.ARCHIVED) { "The post cannot be updated while it is archived" }
         this.title = title
         this.content = content
+        this.updatedAt = Clock.System.now()
     }
 }

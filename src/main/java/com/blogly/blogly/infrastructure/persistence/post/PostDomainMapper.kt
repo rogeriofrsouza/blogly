@@ -6,6 +6,8 @@ import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.post.Title
 import com.blogly.blogly.domain.user.UserId
 import org.springframework.stereotype.Component
+import kotlin.time.toJavaInstant
+import kotlin.time.toKotlinInstant
 
 @Component
 class PostDomainMapper {
@@ -17,6 +19,8 @@ class PostDomainMapper {
             content = post.content.value
             status = post.status
             userId = post.userId.value
+            createdAt = post.createdAt.toJavaInstant()
+            updatedAt = post.updatedAt.toJavaInstant()
         }
 
     fun toDomain(entity: PostEntity) =
@@ -25,6 +29,8 @@ class PostDomainMapper {
             Title(entity.title),
             Content(entity.content),
             UserId(entity.userId),
-            entity.status
+            entity.status,
+            entity.createdAt.toKotlinInstant(),
+            entity.updatedAt.toKotlinInstant()
         )
 }
