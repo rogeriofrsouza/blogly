@@ -9,7 +9,8 @@ data class CommentDetailsResponse(
     val id: String,
     val body: String,
     val userId: String,
-    val createdAt: Instant
+    val createdAt: Instant,
+    val updatedAt: Instant,
 ) {
     companion object {
         fun from(comment: Comment) =
@@ -17,7 +18,8 @@ data class CommentDetailsResponse(
                 id = TsidCodec.encode(comment.id.value),
                 body = comment.body.value,
                 userId = TsidCodec.encode(comment.userId.value),
-                createdAt = comment.createdAt.toJavaInstant()
+                createdAt = comment.createdAt.toJavaInstant(),
+                updatedAt = comment.updatedAt.toJavaInstant(),
             )
     }
 }

@@ -19,6 +19,7 @@ class CommentDomainMapper {
             postId = comment.postId.value
             userId = comment.userId.value
             createdAt = comment.createdAt.toJavaInstant()
+            updatedAt = comment.updatedAt.toJavaInstant()
         }
 
     fun toDomain(entity: CommentEntity) =
@@ -27,6 +28,7 @@ class CommentDomainMapper {
             CommentBody(entity.body),
             PostId(entity.postId),
             UserId(entity.userId),
-            entity.createdAt.toKotlinInstant()
+            entity.createdAt.toKotlinInstant(),
+            entity.updatedAt.toKotlinInstant(),
         )
 }

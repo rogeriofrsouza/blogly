@@ -26,6 +26,9 @@ public class CommentEntity {
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
 
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
+
     public Long getId() {
         return this.id;
     }
@@ -46,6 +49,10 @@ public class CommentEntity {
         return this.createdAt;
     }
 
+    public Instant getUpdatedAt() {
+        return this.updatedAt;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -64,5 +71,9 @@ public class CommentEntity {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
