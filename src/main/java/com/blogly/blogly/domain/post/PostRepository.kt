@@ -1,14 +1,11 @@
 package com.blogly.blogly.domain.post
 
 import com.blogly.blogly.domain.user.UserId
+import org.springframework.data.repository.CrudRepository
 
-interface PostRepository {
-
-    fun findById(id: PostId): Post?
+interface PostRepository : CrudRepository<Post, PostId> {
 
     fun findByUserId(userId: UserId): List<Post>
 
-    fun save(post: Post): PostId
-
-    fun existsByTitle(title: Title): Boolean
+    fun existsByTitleIgnoreCase(title: Title): Boolean
 }

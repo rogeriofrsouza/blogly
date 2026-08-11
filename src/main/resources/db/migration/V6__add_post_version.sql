@@ -1,0 +1,5 @@
+ALTER TABLE post
+    ADD COLUMN version int NOT NULL DEFAULT 0;
+
+ALTER TABLE post
+    ALTER COLUMN version DROP DEFAULT;

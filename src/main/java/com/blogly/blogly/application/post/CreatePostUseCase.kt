@@ -15,7 +15,7 @@ class CreatePostUseCase(
     fun execute(request: CreatePostRequest): PostId {
         val title = Title(request.title)
 
-        if (repository.existsByTitle(title)) {
+        if (repository.existsByTitleIgnoreCase(title)) {
             throw TitleAlreadyExistsException(title)
         }
 
@@ -27,6 +27,6 @@ class CreatePostUseCase(
             userId = user.id
         )
 
-        return repository.save(post)
+        return repository.save(post).id
     }
 }

@@ -6,6 +6,7 @@ import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.post.PostNotCommentableException
 import com.blogly.blogly.domain.post.PostNotFoundException
 import com.blogly.blogly.domain.post.PostRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -15,7 +16,7 @@ class CommentAccessGuard(
     private val userProvider: UserProvider
 ) {
     fun resolveOwnedComment(postId: PostId, commentId: CommentId): Comment {
-        val post = postRepository.findById(postId) ?: throw PostNotFoundException(postId)
+        val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException(postId)
         if (!post.canBeCommentedOn()) {
             throw PostNotCommentableException(postId, post.status)
         }

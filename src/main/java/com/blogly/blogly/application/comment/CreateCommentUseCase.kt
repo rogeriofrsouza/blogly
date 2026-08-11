@@ -11,6 +11,7 @@ import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.post.PostNotCommentableException
 import com.blogly.blogly.domain.post.PostNotFoundException
 import com.blogly.blogly.domain.post.PostRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 
 @Component
@@ -21,7 +22,7 @@ class CreateCommentUseCase(
     private val idGenerator: IdGenerator
 ) {
     fun execute(postId: PostId, request: CreateCommentRequest): CommentId {
-        val post = postRepository.findById(postId) ?: throw PostNotFoundException(postId)
+        val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException(postId)
 
         if (!post.canBeCommentedOn()) {
             throw PostNotCommentableException(postId, post.status)
