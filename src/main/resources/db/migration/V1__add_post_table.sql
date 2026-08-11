@@ -3,7 +3,7 @@ CREATE TABLE post
     id      bigint PRIMARY KEY,
     title   varchar(255) NOT NULL,
     content text         NOT NULL,
-    status  varchar(20)
+    status  varchar(20)  NOT NULL
 );
 
 ALTER TABLE post
