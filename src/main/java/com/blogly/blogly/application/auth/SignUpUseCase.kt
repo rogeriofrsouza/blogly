@@ -30,12 +30,12 @@ class SignUpUseCase(
             name = Name(request.name)
         )
 
-        userRepository.save(user)
+        val savedUser = userRepository.save(user)
 
         return SignUpResponse(
-            TsidCodec.encode(user.id.value),
-            user.email.value,
-            user.role
+            TsidCodec.encode(savedUser.id.value),
+            savedUser.email.value,
+            savedUser.role
         )
     }
 }

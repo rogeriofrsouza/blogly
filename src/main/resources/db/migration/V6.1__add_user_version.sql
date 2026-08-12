@@ -1,0 +1,5 @@
+ALTER TABLE users
+    ADD COLUMN version int NOT NULL DEFAULT 0;
+
+ALTER TABLE users
+    ALTER COLUMN version DROP DEFAULT;
