@@ -14,8 +14,9 @@ class UpdateCommentUseCase(
 ) {
     fun execute(postId: PostId, commentId: CommentId, request: UpdateCommentRequest) {
         val comment = accessGuard.resolveOwnedComment(postId, commentId)
-        comment.update(CommentBody(request.body))
 
-        repository.save(comment)
+        repository.save(
+            comment.update(CommentBody(request.body))
+        )
     }
 }

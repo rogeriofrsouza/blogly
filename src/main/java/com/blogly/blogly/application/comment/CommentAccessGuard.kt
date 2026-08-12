@@ -21,7 +21,7 @@ class CommentAccessGuard(
             throw PostNotCommentableException(postId, post.status)
         }
 
-        val comment = commentRepository.findById(commentId)
+        val comment = commentRepository.findByIdOrNull(commentId)
             ?.takeIf { it.belongsTo(postId) }
             ?: throw CommentNotFoundException(commentId)
 

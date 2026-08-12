@@ -3,7 +3,6 @@ package com.blogly.blogly.application.comment.dto
 import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.domain.comment.Comment
 import java.time.Instant
-import kotlin.time.toJavaInstant
 
 data class CommentDetailsResponse(
     val id: String,
@@ -18,8 +17,8 @@ data class CommentDetailsResponse(
                 id = TsidCodec.encode(comment.id.value),
                 body = comment.body.value,
                 userId = TsidCodec.encode(comment.userId.value),
-                createdAt = comment.createdAt.toJavaInstant(),
-                updatedAt = comment.updatedAt.toJavaInstant(),
+                createdAt = comment.createdAt,
+                updatedAt = comment.updatedAt,
             )
     }
 }

@@ -16,7 +16,7 @@ class FindAllCommentsUseCase(
     fun execute(postId: PostId): List<CommentDetailsResponse> {
         postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException(postId)
 
-        return repository.findByPostId(postId)
+        return repository.findByPostIdOrderByCreatedAtAsc(postId)
             .map(CommentDetailsResponse::from)
     }
 }

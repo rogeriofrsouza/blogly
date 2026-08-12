@@ -37,6 +37,6 @@ class CreateCommentUseCase(
             userId = user.id
         )
 
-        return repository.save(comment)
+        return repository.save(comment).id
     }
 }

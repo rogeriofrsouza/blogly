@@ -2,23 +2,24 @@ package com.blogly.blogly.domain.comment
 
 import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.user.UserId
-import kotlin.time.Clock
-import kotlin.time.Instant
+import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.Version
+import org.springframework.data.relational.core.mapping.Table
+import java.time.Instant
 
-class Comment(
-    val id: CommentId,
-    var body: CommentBody,
+@Table
+data class Comment(
+    @Id val id: CommentId,
+    val body: CommentBody,
     val postId: PostId,
     val userId: UserId,
-    val createdAt: Instant = Clock.System.now(),
-    var updatedAt: Instant = createdAt
+    @Version val version: Int? = null,
+    val createdAt: Instant = Instant.now(),
+    val updatedAt: Instant = createdAt
 ) {
     fun isAuthoredBy(userId: UserId): Boolean = this.userId == userId
 
     fun belongsTo(postId: PostId): Boolean = this.postId == postId
 
-    fun update(body: CommentBody) {
-        this.body = body
-        this.updatedAt = Clock.System.now()
-    }
+    fun update(body: CommentBody): Comment = copy(body = body, updatedAt = Instant.now())
 }

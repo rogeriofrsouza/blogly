@@ -1,0 +1,5 @@
+ALTER TABLE comment
+    ADD COLUMN version int NOT NULL DEFAULT 0;
+
+ALTER TABLE comment
+    ALTER COLUMN version DROP DEFAULT;
