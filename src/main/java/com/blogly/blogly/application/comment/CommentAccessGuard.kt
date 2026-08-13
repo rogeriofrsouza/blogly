@@ -16,7 +16,7 @@ class CommentAccessGuard(
     private val userProvider: UserProvider
 ) {
     fun resolveOwnedComment(postId: PostId, commentId: CommentId): Comment {
-        val post = postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException(postId)
+        val post = postRepository.findById(postId) ?: throw PostNotFoundException(postId)
         if (!post.canBeCommentedOn()) {
             throw PostNotCommentableException(postId, post.status)
         }

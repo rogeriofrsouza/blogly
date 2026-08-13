@@ -4,5 +4,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories
 
 @Configuration
-@EnableJdbcRepositories(basePackages = ["com.blogly.blogly.domain"])
+@EnableJdbcRepositories(
+    basePackages = ["com.blogly.blogly.domain", "com.blogly.blogly.infrastructure.persistence"]
+)
 class PersistenceConfiguration

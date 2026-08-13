@@ -5,7 +5,6 @@ import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.post.PostNotFoundException
 import com.blogly.blogly.domain.post.PostNotOwnedException
 import com.blogly.blogly.domain.post.PostRepository
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 
 @Component
@@ -14,7 +13,7 @@ class DeletePostUseCase(
     private val userProvider: UserProvider
 ) {
     fun execute(postId: PostId) {
-        val post = repository.findByIdOrNull(postId) ?: throw PostNotFoundException(postId)
+        val post = repository.findById(postId) ?: throw PostNotFoundException(postId)
         val user = userProvider.currentUser()
 
         if (!post.isAuthoredBy(user.id)) {
