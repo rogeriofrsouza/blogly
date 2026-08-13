@@ -17,7 +17,8 @@ class PostController(
     private val getByIdUseCase: GetPostByIdUseCase,
     private val findAllPostsUseCase: FindAllPostsUseCase,
     private val updateUseCase: UpdatePostUseCase,
-    private val archiveUseCase: ArchivePostUseCase
+    private val archiveUseCase: ArchivePostUseCase,
+    private val deleteUseCase: DeletePostUseCase
 ) {
     @PostMapping
     fun create(@Valid @RequestBody dto: CreatePostRequestDto): ResponseEntity<Void> {
@@ -48,4 +49,8 @@ class PostController(
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/{id}/archive")
     fun archive(@PathVariable id: String) = archiveUseCase.execute(PostId(TsidCodec.decode(id)))
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: String) = deleteUseCase.execute(PostId(TsidCodec.decode(id)))
 }

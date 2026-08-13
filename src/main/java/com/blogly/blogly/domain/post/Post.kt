@@ -33,4 +33,10 @@ data class Post(
 
         return copy(status = PostStatus.ARCHIVED, updatedAt = Clock.System.now())
     }
+
+    fun delete(): Post {
+        check(status != PostStatus.DELETED) { "The post is already deleted" }
+
+        return copy(status = PostStatus.DELETED, updatedAt = Clock.System.now())
+    }
 }
