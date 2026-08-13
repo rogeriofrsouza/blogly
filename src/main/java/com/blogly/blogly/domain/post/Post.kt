@@ -27,4 +27,10 @@ data class Post(
 
         return copy(title = title, content = content, updatedAt = Clock.System.now())
     }
+
+    fun archive(): Post {
+        check(status != PostStatus.ARCHIVED) { "The post is already archived" }
+
+        return copy(status = PostStatus.ARCHIVED, updatedAt = Clock.System.now())
+    }
 }

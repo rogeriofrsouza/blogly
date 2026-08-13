@@ -1,9 +1,6 @@
 package com.blogly.blogly.presentation.post
 
-import com.blogly.blogly.application.post.CreatePostUseCase
-import com.blogly.blogly.application.post.FindAllPostsUseCase
-import com.blogly.blogly.application.post.GetPostByIdUseCase
-import com.blogly.blogly.application.post.UpdatePostUseCase
+import com.blogly.blogly.application.post.*
 import com.blogly.blogly.application.post.dto.PostDetailsResponse
 import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.domain.post.PostId
@@ -19,7 +16,8 @@ class PostController(
     private val createUseCase: CreatePostUseCase,
     private val getByIdUseCase: GetPostByIdUseCase,
     private val findAllPostsUseCase: FindAllPostsUseCase,
-    private val updateUseCase: UpdatePostUseCase
+    private val updateUseCase: UpdatePostUseCase,
+    private val archiveUseCase: ArchivePostUseCase
 ) {
     @PostMapping
     fun create(@Valid @RequestBody dto: CreatePostRequestDto): ResponseEntity<Void> {
@@ -46,4 +44,8 @@ class PostController(
         @PathVariable id: String,
         @Valid @RequestBody dto: UpdatePostRequestDto
     ) = updateUseCase.execute(PostId(TsidCodec.decode(id)), dto.toRequest())
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/{id}/archive")
+    fun archive(@PathVariable id: String) = archiveUseCase.execute(PostId(TsidCodec.decode(id)))
 }
