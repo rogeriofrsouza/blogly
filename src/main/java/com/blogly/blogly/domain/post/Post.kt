@@ -4,7 +4,8 @@ import com.blogly.blogly.domain.user.UserId
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.Version
 import org.springframework.data.relational.core.mapping.Table
-import java.time.Instant
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 @Table
 data class Post(
@@ -14,7 +15,7 @@ data class Post(
     val userId: UserId,
     val status: PostStatus = PostStatus.PUBLISHED,
     @Version val version: Int? = null,
-    val createdAt: Instant = Instant.now(),
+    val createdAt: Instant = Clock.System.now(),
     val updatedAt: Instant = createdAt
 ) {
     fun canBeCommentedOn(): Boolean = status == PostStatus.PUBLISHED
@@ -24,6 +25,6 @@ data class Post(
     fun update(title: Title, content: Content): Post {
         check(status != PostStatus.ARCHIVED) { "The post cannot be updated while it is archived" }
 
-        return copy(title = title, content = content, updatedAt = Instant.now())
+        return copy(title = title, content = content, updatedAt = Clock.System.now())
     }
 }

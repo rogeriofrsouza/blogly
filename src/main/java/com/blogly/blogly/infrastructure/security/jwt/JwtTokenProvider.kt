@@ -8,7 +8,9 @@ import com.blogly.blogly.application.auth.TokenProvider
 import com.blogly.blogly.domain.exception.InvalidTokenException
 import com.blogly.blogly.domain.user.User
 import org.springframework.stereotype.Component
-import java.time.Instant
+import kotlin.time.Clock
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.toJavaInstant
 
 @Component
 class JwtTokenProvider(private val jwtProperties: JwtProperties) : TokenProvider {
@@ -17,12 +19,13 @@ class JwtTokenProvider(private val jwtProperties: JwtProperties) : TokenProvider
     private val verifier: JWTVerifier = JWT.require(algorithm).build()
 
     override fun generateToken(user: User): String {
-        val now = Instant.now()
+        val now = Clock.System.now()
+        val expiresAt = now + jwtProperties.expirationMs.milliseconds
 
         return JWT.create()
             .withSubject(user.email.value)
-            .withIssuedAt(now)
-            .withExpiresAt(now.plusMillis(jwtProperties.expirationMs))
+            .withIssuedAt(now.toJavaInstant())
+            .withExpiresAt(expiresAt.toJavaInstant())
             .sign(algorithm)
     }
 
