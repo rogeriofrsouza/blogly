@@ -9,21 +9,20 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class CommentJpaRepositoryAdapter(
-    private val repository: CommentJpaRepository,
-    private val mapper: CommentDomainMapper
+    private val repository: CommentJpaRepository
 ) : CommentRepository {
 
     override fun findById(id: CommentId): Comment? {
         return repository.findByIdOrNull(id.value)
-            ?.let { mapper.toDomain(it) }
+            ?.let { CommentDomainMapper.toDomain(it) }
     }
 
     override fun findByPostId(postId: PostId): List<Comment> =
         repository.findByPostIdOrderByCreatedAtAsc(postId.value)
-            .map(mapper::toDomain)
+            .map(CommentDomainMapper::toDomain)
 
     override fun save(comment: Comment): CommentId {
-        val entity = mapper.toEntity(comment)
+        val entity = CommentDomainMapper.toEntity(comment)
         repository.save(entity)
 
         return CommentId(entity.id)

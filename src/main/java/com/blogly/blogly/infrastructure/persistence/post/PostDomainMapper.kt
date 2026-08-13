@@ -5,12 +5,10 @@ import com.blogly.blogly.domain.post.Post
 import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.post.Title
 import com.blogly.blogly.domain.user.UserId
-import org.springframework.stereotype.Component
 import kotlin.time.toJavaInstant
 import kotlin.time.toKotlinInstant
 
-@Component
-class PostDomainMapper {
+object PostDomainMapper {
 
     fun toEntity(post: Post) =
         PostEntity().apply {

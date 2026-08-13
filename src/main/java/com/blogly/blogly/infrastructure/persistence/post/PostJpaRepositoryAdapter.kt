@@ -10,21 +10,20 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class PostJpaRepositoryAdapter(
-    private val repository: PostJpaRepository,
-    private val mapper: PostDomainMapper
+    private val repository: PostJpaRepository
 ) : PostRepository {
 
     override fun findById(id: PostId): Post? {
         return repository.findByIdOrNull(id.value)
-            ?.let { mapper.toDomain(it) }
+            ?.let { PostDomainMapper.toDomain(it) }
     }
 
     override fun findByUserId(userId: UserId): List<Post> =
         repository.findByUserId(userId.value)
-            .map(mapper::toDomain)
+            .map(PostDomainMapper::toDomain)
 
     override fun save(post: Post): PostId {
-        val entity = mapper.toEntity(post)
+        val entity = PostDomainMapper.toEntity(post)
         repository.save(entity)
 
         return PostId(entity.id)

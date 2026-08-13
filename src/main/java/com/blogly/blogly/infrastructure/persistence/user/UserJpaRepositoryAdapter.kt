@@ -9,23 +9,22 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class UserJpaRepositoryAdapter(
-    private val repository: UserJpaRepository,
-    private val mapper: UserDomainMapper
+    private val repository: UserJpaRepository
 ) : UserRepository {
 
     override fun findById(id: UserId): User? =
         repository.findByIdOrNull(id.value)
-            ?.let { mapper.toDomain(it) }
+            ?.let { UserDomainMapper.toDomain(it) }
 
     override fun findByEmail(email: Email): User? =
         repository.findByEmail(email.value)
-            ?.let { mapper.toDomain(it) }
+            ?.let { UserDomainMapper.toDomain(it) }
 
     override fun existsByEmail(email: Email): Boolean =
         repository.existsByEmail(email.value)
 
     override fun save(user: User): UserId {
-        val entity = mapper.toEntity(user)
+        val entity = UserDomainMapper.toEntity(user)
         repository.save(entity)
         return user.id
     }

@@ -5,12 +5,10 @@ import com.blogly.blogly.domain.comment.CommentBody
 import com.blogly.blogly.domain.comment.CommentId
 import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.user.UserId
-import org.springframework.stereotype.Component
 import kotlin.time.toJavaInstant
 import kotlin.time.toKotlinInstant
 
-@Component
-class CommentDomainMapper {
+object CommentDomainMapper {
 
     fun toEntity(comment: Comment) =
         CommentEntity().apply {

@@ -1,10 +1,8 @@
 package com.blogly.blogly.infrastructure.persistence.user
 
 import com.blogly.blogly.domain.user.*
-import org.springframework.stereotype.Component
 
-@Component
-class UserDomainMapper {
+object UserDomainMapper {
 
     fun toEntity(user: User): UserEntity =
         UserEntity().apply {
