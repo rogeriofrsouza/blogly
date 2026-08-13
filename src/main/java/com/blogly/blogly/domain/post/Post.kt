@@ -16,7 +16,8 @@ data class Post(
     val status: PostStatus = PostStatus.PUBLISHED,
     @Version val version: Int? = null,
     val createdAt: Instant = Clock.System.now(),
-    val updatedAt: Instant = createdAt
+    val updatedAt: Instant = createdAt,
+    val deletedAt: Instant? = null
 ) {
     fun canBeCommentedOn(): Boolean = status == PostStatus.PUBLISHED
 
@@ -35,8 +36,9 @@ data class Post(
     }
 
     fun delete(): Post {
-        check(status != PostStatus.DELETED) { "The post is already deleted" }
+        check(deletedAt == null) { "The post is already deleted" }
 
-        return copy(status = PostStatus.DELETED, updatedAt = Clock.System.now())
+        val now = Clock.System.now()
+        return copy(deletedAt = now, updatedAt = now)
     }
 }
