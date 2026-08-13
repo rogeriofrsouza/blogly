@@ -21,17 +21,9 @@ kotlin {
     jvmToolchain(25)
 }
 
-val mapstructVersion = "1.6.3"
-val lombokMapstructBindingVersion = "0.2.0"
 val springDocVersion = "2.8.15"
 val tsidVersion = "2.1.4"
 val authJwtVersion = "4.5.1"
-
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
-    }
-}
 
 repositories {
     mavenCentral()
@@ -43,16 +35,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-flyway")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("com.auth0:java-jwt:${authJwtVersion}")
-    implementation("org.mapstruct:mapstruct:$mapstructVersion")
-    implementation("org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-scalar:${springDocVersion}")
     implementation("io.hypersistence:hypersistence-tsid:${tsidVersion}")
     implementation(kotlin("reflect"))
-    compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    annotationProcessor("org.projectlombok:lombok")
-    annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-data-jdbc-test")
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testImplementation(kotlin("test"))
