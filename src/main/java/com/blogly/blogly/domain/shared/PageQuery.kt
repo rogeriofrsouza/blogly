@@ -1,8 +1,8 @@
 package com.blogly.blogly.domain.shared
 
 data class PageQuery(
-    val page: Int = DEFAULT_PAGE,
-    val size: Int = DEFAULT_SIZE
+    val page: Int,
+    val size: Int
 ) {
     init {
         require(page >= 0) { "Page number cannot be negative" }
@@ -10,7 +10,7 @@ data class PageQuery(
     }
 
     companion object {
-        const val DEFAULT_PAGE = 0
+        const val FIRST_PAGE = 0
         const val DEFAULT_SIZE = 10
         const val MAX_SIZE = 20
     }
