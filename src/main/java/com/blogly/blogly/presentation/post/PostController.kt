@@ -5,10 +5,10 @@ import com.blogly.blogly.application.post.dto.PostDetailsResponse
 import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.presentation.shared.PageQueryDto
-import com.blogly.blogly.presentation.shared.toPagedModel
+import com.blogly.blogly.presentation.shared.SlicedModel
+import com.blogly.blogly.presentation.shared.toSlicedModel
 import jakarta.validation.Valid
 import org.springdoc.core.annotations.ParameterObject
-import org.springframework.data.web.PagedModel
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -41,8 +41,8 @@ class PostController(
         getByIdUseCase.execute(PostId(TsidCodec.decode(id)))
 
     @GetMapping
-    fun findAll(@ParameterObject dto: PageQueryDto): PagedModel<PostDetailsResponse> =
-        findAllPostsUseCase.execute(dto.toQuery()).toPagedModel()
+    fun findAll(@ParameterObject dto: PageQueryDto): SlicedModel<PostDetailsResponse> =
+        findAllPostsUseCase.execute(dto.toQuery()).toSlicedModel()
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
