@@ -4,7 +4,7 @@ import com.blogly.blogly.application.post.*
 import com.blogly.blogly.application.post.dto.PostDetailsResponse
 import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.domain.post.PostId
-import com.blogly.blogly.presentation.shared.PageQueryDto
+import com.blogly.blogly.presentation.shared.PageQueryParams
 import com.blogly.blogly.presentation.shared.SlicedModel
 import com.blogly.blogly.presentation.shared.toSlicedModel
 import jakarta.validation.Valid
@@ -41,8 +41,8 @@ class PostController(
         getByIdUseCase.execute(PostId(TsidCodec.decode(id)))
 
     @GetMapping
-    fun findAll(@ParameterObject dto: PageQueryDto): SlicedModel<PostDetailsResponse> =
-        findAllPostsUseCase.execute(dto.toQuery()).toSlicedModel()
+    fun findAll(@Valid @ParameterObject params: PageQueryParams): SlicedModel<PostDetailsResponse> =
+        findAllPostsUseCase.execute(params.toQuery()).toSlicedModel()
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
