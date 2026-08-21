@@ -7,13 +7,11 @@ data class PostDetailsResponse(
     val id: String,
     val title: String,
     val content: String
-) {
-    companion object {
-        fun from(post: Post) =
-            PostDetailsResponse(
-                id = TsidCodec.encode(post.id.value),
-                title = post.title.value,
-                content = post.content.value
-            )
-    }
-}
+)
+
+fun Post.toDetailsResponse() =
+    PostDetailsResponse(
+        id = TsidCodec.encode(id.value),
+        title = title.value,
+        content = content.value
+    )

@@ -11,15 +11,13 @@ data class CommentDetailsResponse(
     val userId: String,
     val createdAt: Instant,
     val updatedAt: Instant,
-) {
-    companion object {
-        fun from(comment: Comment) =
-            CommentDetailsResponse(
-                id = TsidCodec.encode(comment.id.value),
-                body = comment.body.value,
-                userId = TsidCodec.encode(comment.userId.value),
-                createdAt = comment.createdAt.toJavaInstant(),
-                updatedAt = comment.updatedAt.toJavaInstant(),
-            )
-    }
-}
+)
+
+fun Comment.toDetailsResponse() =
+    CommentDetailsResponse(
+        id = TsidCodec.encode(id.value),
+        body = body.value,
+        userId = TsidCodec.encode(userId.value),
+        createdAt = createdAt.toJavaInstant(),
+        updatedAt = updatedAt.toJavaInstant(),
+    )

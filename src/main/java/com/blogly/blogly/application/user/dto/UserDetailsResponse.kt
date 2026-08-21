@@ -8,14 +8,12 @@ data class UserDetailsResponse(
     val email: String,
     val role: String,
     val name: String
-) {
-    companion object {
-        fun from(user: User) =
-            UserDetailsResponse(
-                id = TsidCodec.encode(user.id.value),
-                email = user.email.value,
-                role = user.role.name,
-                name = user.name.value
-            )
-    }
-}
+)
+
+fun User.toDetailsResponse() =
+    UserDetailsResponse(
+        id = TsidCodec.encode(id.value),
+        email = email.value,
+        role = role.name,
+        name = name.value
+    )

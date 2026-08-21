@@ -1,7 +1,9 @@
 package com.blogly.blogly.application.post
 
 import com.blogly.blogly.application.post.dto.PostDetailsResponse
+import com.blogly.blogly.application.post.dto.toDetailsResponse
 import com.blogly.blogly.application.shared.UserProvider
+import com.blogly.blogly.domain.post.Post
 import com.blogly.blogly.domain.post.PostRepository
 import org.springframework.stereotype.Component
 
@@ -14,6 +16,6 @@ class FindAllPostsUseCase(
         val user = userProvider.currentUser()
 
         return repository.findByUserId(user.id)
-            .map(PostDetailsResponse::from)
+            .map(Post::toDetailsResponse)
     }
 }

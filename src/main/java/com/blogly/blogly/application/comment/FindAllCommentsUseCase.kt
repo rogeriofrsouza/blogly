@@ -1,6 +1,8 @@
 package com.blogly.blogly.application.comment
 
 import com.blogly.blogly.application.comment.dto.CommentDetailsResponse
+import com.blogly.blogly.application.comment.dto.toDetailsResponse
+import com.blogly.blogly.domain.comment.Comment
 import com.blogly.blogly.domain.comment.CommentRepository
 import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.post.PostNotFoundException
@@ -16,6 +18,6 @@ class FindAllCommentsUseCase(
         postRepository.findById(postId) ?: throw PostNotFoundException(postId)
 
         return repository.findByPostId(postId)
-            .map(CommentDetailsResponse::from)
+            .map(Comment::toDetailsResponse)
     }
 }
