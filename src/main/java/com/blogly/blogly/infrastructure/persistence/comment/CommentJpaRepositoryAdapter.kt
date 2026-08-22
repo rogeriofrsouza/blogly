@@ -17,8 +17,8 @@ class CommentJpaRepositoryAdapter(
             ?.let { CommentDomainMapper.toDomain(it) }
     }
 
-    override fun findByPostId(postId: PostId): List<Comment> =
-        repository.findByPostIdOrderByCreatedAtAsc(postId.value)
+    override fun findByPublishedPostId(postId: PostId): List<Comment> =
+        repository.findByPublishedPostId(postId.value)
             .map(CommentDomainMapper::toDomain)
 
     override fun save(comment: Comment): CommentId {
