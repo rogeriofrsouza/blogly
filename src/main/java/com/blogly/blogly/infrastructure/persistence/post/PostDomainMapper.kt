@@ -19,6 +19,7 @@ object PostDomainMapper {
             userId = post.userId.value
             createdAt = post.createdAt.toJavaInstant()
             updatedAt = post.updatedAt.toJavaInstant()
+            deletedAt = post.deletedAt?.toJavaInstant()
         }
 
     fun toDomain(entity: PostEntity) =
@@ -29,6 +30,7 @@ object PostDomainMapper {
             UserId(entity.userId),
             entity.status,
             entity.createdAt.toKotlinInstant(),
-            entity.updatedAt.toKotlinInstant()
+            entity.updatedAt.toKotlinInstant(),
+            entity.deletedAt?.toKotlinInstant()
         )
 }

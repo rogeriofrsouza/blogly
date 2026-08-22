@@ -11,7 +11,8 @@ class Post(
     val userId: UserId,
     val status: PostStatus = PostStatus.PUBLISHED,
     val createdAt: Instant = Clock.System.now(),
-    var updatedAt: Instant = createdAt
+    var updatedAt: Instant = createdAt,
+    var deletedAt: Instant? = null
 ) {
     fun canBeCommentedOn(): Boolean = status == PostStatus.PUBLISHED
 
@@ -22,5 +23,13 @@ class Post(
         this.title = title
         this.content = content
         this.updatedAt = Clock.System.now()
+    }
+
+    fun delete() {
+        check(deletedAt == null) { "The post has already been deleted" }
+
+        val now = Clock.System.now()
+        this.deletedAt = now
+        this.updatedAt = now
     }
 }
