@@ -2,7 +2,6 @@ package com.blogly.blogly.application.comment
 
 import com.blogly.blogly.application.shared.UserProvider
 import com.blogly.blogly.domain.comment.*
-import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.post.PostNotCommentableException
 import com.blogly.blogly.domain.post.PostNotFoundException
 import com.blogly.blogly.domain.post.PostRepository
@@ -14,15 +13,13 @@ class CommentAccessGuard(
     private val postRepository: PostRepository,
     private val userProvider: UserProvider
 ) {
-    fun resolveOwnedComment(postId: PostId, commentId: CommentId): Comment {
-        val post = postRepository.findById(postId) ?: throw PostNotFoundException(postId)
-        if (!post.canBeCommentedOn()) {
-            throw PostNotCommentableException(postId, post.status)
-        }
+    fun resolveOwnedComment(commentId: CommentId): Comment {
+        val comment = commentRepository.findById(commentId) ?: throw CommentNotFoundException(commentId)
 
-        val comment = commentRepository.findById(commentId)
-            ?.takeIf { it.belongsTo(postId) }
-            ?: throw CommentNotFoundException(commentId)
+        val post = postRepository.findById(comment.postId) ?: throw PostNotFoundException(comment.postId)
+        if (!post.canBeCommentedOn()) {
+            throw PostNotCommentableException(comment.postId, post.status)
+        }
 
         val user = userProvider.currentUser()
         if (!comment.isAuthoredBy(user.id)) {

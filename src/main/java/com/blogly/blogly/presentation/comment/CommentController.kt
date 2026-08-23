@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 
-@RequestMapping("/api/posts/{postId}/comments")
 @RestController
 class CommentController(
     private val createUseCase: CreateCommentUseCase,
@@ -22,44 +21,34 @@ class CommentController(
     private val updateUseCase: UpdateCommentUseCase,
     private val deleteUseCase: DeleteCommentUseCase
 ) {
-    @PostMapping
+    @PostMapping("/api/posts/{postId}/comments")
     fun create(
         @PathVariable postId: String,
         @Valid @RequestBody dto: CreateCommentDto
     ): ResponseEntity<Void> {
         val id = createUseCase.execute(PostId(TsidCodec.decode(postId)), dto.toRequest())
 
-        val location = ServletUriComponentsBuilder.fromCurrentRequest()
-            .path("/{id}")
+        val location = ServletUriComponentsBuilder.fromCurrentContextPath()
+            .path("/api/comments/{id}")
             .buildAndExpand(TsidCodec.encode(id.value))
             .toUri()
 
         return ResponseEntity.created(location).build()
     }
 
-    @GetMapping
+    @GetMapping("/api/posts/{postId}/comments")
     fun findAll(@PathVariable postId: String): List<CommentDetailsResponse> =
         findAllUseCase.execute(PostId(TsidCodec.decode(postId)))
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/{id}")
+    @PutMapping("/api/comments/{commentId}")
     fun update(
-        @PathVariable postId: String,
-        @PathVariable id: String,
+        @PathVariable commentId: String,
         @Valid @RequestBody dto: UpdateCommentDto
-    ) = updateUseCase.execute(
-        PostId(TsidCodec.decode(postId)),
-        CommentId(TsidCodec.decode(id)),
-        dto.toRequest()
-    )
+    ) = updateUseCase.execute(CommentId(TsidCodec.decode(commentId)), dto.toRequest())
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
-    fun delete(
-        @PathVariable postId: String,
-        @PathVariable id: String
-    ) = deleteUseCase.execute(
-        PostId(TsidCodec.decode(postId)),
-        CommentId(TsidCodec.decode(id))
-    )
+    @DeleteMapping("/api/comments/{commentId}")
+    fun delete(@PathVariable commentId: String) =
+        deleteUseCase.execute(CommentId(TsidCodec.decode(commentId)))
 }

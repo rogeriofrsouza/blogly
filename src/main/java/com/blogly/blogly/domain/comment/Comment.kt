@@ -15,8 +15,6 @@ class Comment(
 ) {
     fun isAuthoredBy(userId: UserId): Boolean = this.userId == userId
 
-    fun belongsTo(postId: PostId): Boolean = this.postId == postId
-
     fun update(body: CommentBody) {
         this.body = body
         this.updatedAt = Clock.System.now()
