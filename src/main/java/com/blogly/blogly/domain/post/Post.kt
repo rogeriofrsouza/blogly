@@ -9,7 +9,7 @@ class Post(
     var title: Title,
     var content: Content,
     val userId: UserId,
-    val status: PostStatus = PostStatus.PUBLISHED,
+    var status: PostStatus = PostStatus.PUBLISHED,
     val createdAt: Instant = Clock.System.now(),
     var updatedAt: Instant = createdAt,
     var deletedAt: Instant? = null
@@ -22,6 +22,13 @@ class Post(
         check(status != PostStatus.ARCHIVED) { "The post cannot be updated while it is archived" }
         this.title = title
         this.content = content
+        this.updatedAt = Clock.System.now()
+    }
+
+    fun archive() {
+        check(status != PostStatus.ARCHIVED) { "The post has already been archived" }
+
+        this.status = PostStatus.ARCHIVED
         this.updatedAt = Clock.System.now()
     }
 
