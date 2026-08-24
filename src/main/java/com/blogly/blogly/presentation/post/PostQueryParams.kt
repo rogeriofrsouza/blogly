@@ -11,7 +11,7 @@ data class PostQueryParams(
     @field:Length(max = 50)
     val content: String? = null,
 
-    val status: PostStatus = PostStatus.PUBLISHED
+    val status: PostStatus? = null
 ) {
     fun toQuery() = PostQuery(normalize(title), normalize(content), status)
 

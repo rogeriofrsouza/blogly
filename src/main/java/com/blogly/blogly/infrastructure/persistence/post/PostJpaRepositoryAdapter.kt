@@ -28,7 +28,7 @@ class PostJpaRepositoryAdapter(
         val specifications = buildList {
             add(notDeleted())
             add(authoredBy(userId.value))
-            add(hasStatus(postQuery.status))
+            postQuery.status?.let { add(hasStatus(it)) }
             postQuery.title?.let { add(titleContains(it)) }
             postQuery.content?.let { add(contentContains(it)) }
         }
