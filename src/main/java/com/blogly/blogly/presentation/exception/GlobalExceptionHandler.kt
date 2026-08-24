@@ -21,8 +21,8 @@ import kotlin.time.toJavaInstant
 @RestControllerAdvice
 class GlobalExceptionHandler {
 
-    @ExceptionHandler(IllegalArgumentException::class, IllegalStateException::class)
-    fun handleBadRequest(ex: RuntimeException): ResponseEntity<ApiError> =
+    @ExceptionHandler(IllegalArgumentException::class)
+    fun handleBadRequest(ex: IllegalArgumentException): ResponseEntity<ApiError> =
         build(HttpStatus.BAD_REQUEST, ex)
 
     @ExceptionHandler(NotFoundException::class)
