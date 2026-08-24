@@ -9,9 +9,6 @@ import com.blogly.blogly.domain.exception.NotFoundException
 import com.blogly.blogly.domain.exception.NotOwnedException
 import com.blogly.blogly.domain.post.TitleAlreadyExistsException
 import com.blogly.blogly.domain.user.exception.EmailAlreadyExistsException
-import com.blogly.blogly.domain.user.exception.InvalidEmailException
-import com.blogly.blogly.domain.user.exception.InvalidNameException
-import com.blogly.blogly.domain.user.exception.InvalidPasswordException
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -24,10 +21,7 @@ import kotlin.time.toJavaInstant
 @RestControllerAdvice
 class GlobalExceptionHandler {
 
-    @ExceptionHandler(
-        IllegalArgumentException::class, IllegalStateException::class, InvalidEmailException::class,
-        InvalidNameException::class, InvalidPasswordException::class
-    )
+    @ExceptionHandler(IllegalArgumentException::class, IllegalStateException::class)
     fun handleBadRequest(ex: RuntimeException): ResponseEntity<ApiError> =
         build(HttpStatus.BAD_REQUEST, ex)
 

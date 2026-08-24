@@ -1,13 +1,9 @@
 package com.blogly.blogly.domain.user
 
-import com.blogly.blogly.domain.user.exception.InvalidEmailException
-
 @JvmInline
 value class Email(val value: String) {
     init {
-        if (EMAIL_PATTERN.matches(value).not()) {
-            throw InvalidEmailException(value)
-        }
+        require(EMAIL_PATTERN.matches(value)) { "Invalid email format: $value" }
     }
 
     companion object {

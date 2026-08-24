@@ -1,7 +1,5 @@
 package com.blogly.blogly.domain.user
 
-import com.blogly.blogly.domain.user.exception.InvalidPasswordException
-
 @JvmInline
 value class Password(val hashedValue: String) {
 
@@ -11,9 +9,7 @@ value class Password(val hashedValue: String) {
         private const val MIN_LENGTH = 8
 
         fun create(plainText: String, hasher: PasswordHasher): Password {
-            if (plainText.length < MIN_LENGTH) {
-                throw InvalidPasswordException("Password must be at least $MIN_LENGTH characters")
-            }
+            require(plainText.length >= MIN_LENGTH) { "Password must be at least $MIN_LENGTH characters" }
 
             return Password(hasher.hash(plainText))
         }
