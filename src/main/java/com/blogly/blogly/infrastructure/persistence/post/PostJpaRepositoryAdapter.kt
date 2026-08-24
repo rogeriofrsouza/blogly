@@ -1,10 +1,17 @@
 package com.blogly.blogly.infrastructure.persistence.post
 
-import com.blogly.blogly.domain.post.Post
-import com.blogly.blogly.domain.post.PostId
-import com.blogly.blogly.domain.post.PostRepository
-import com.blogly.blogly.domain.post.Title
+import com.blogly.blogly.domain.post.*
+import com.blogly.blogly.domain.shared.PageQuery
+import com.blogly.blogly.domain.shared.PageResult
 import com.blogly.blogly.domain.user.UserId
+import com.blogly.blogly.infrastructure.persistence.post.PostSpecifications.authoredBy
+import com.blogly.blogly.infrastructure.persistence.post.PostSpecifications.contentContains
+import com.blogly.blogly.infrastructure.persistence.post.PostSpecifications.hasStatus
+import com.blogly.blogly.infrastructure.persistence.post.PostSpecifications.notDeleted
+import com.blogly.blogly.infrastructure.persistence.post.PostSpecifications.titleContains
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Sort
+import org.springframework.data.jpa.domain.Specification
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -17,9 +24,24 @@ class PostJpaRepositoryAdapter(
             ?.let { PostDomainMapper.toDomain(it) }
     }
 
-    override fun findByUserId(userId: UserId): List<Post> =
-        repository.findByUserIdAndDeletedAtIsNull(userId.value)
-            .map(PostDomainMapper::toDomain)
+    override fun findAllByAuthor(userId: UserId, postQuery: PostQuery, pageQuery: PageQuery): PageResult<Post> {
+        val specifications = buildList {
+            add(notDeleted())
+            add(authoredBy(userId.value))
+            add(hasStatus(postQuery.status))
+            postQuery.title?.let { add(titleContains(it)) }
+            postQuery.content?.let { add(contentContains(it)) }
+        }
+        val pageable = PageRequest.of(pageQuery.page, pageQuery.size, Sort.by(Sort.Direction.DESC, "id"))
+        val posts = repository.findAll(Specification.allOf(specifications), pageable)
+
+        return PageResult(
+            posts.content.map(PostDomainMapper::toDomain),
+            pageQuery.page,
+            pageQuery.size,
+            posts.totalElements
+        )
+    }
 
     override fun save(post: Post): PostId {
         val entity = PostDomainMapper.toEntity(post)
