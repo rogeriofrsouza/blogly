@@ -1,5 +1,6 @@
 package com.blogly.blogly.domain.post
 
+import com.blogly.blogly.domain.shared.domainCheck
 import com.blogly.blogly.domain.user.UserId
 import kotlin.time.Clock
 import kotlin.time.Instant
@@ -19,22 +20,20 @@ class Post(
     fun isAuthoredBy(userId: UserId): Boolean = this.userId == userId
 
     fun update(title: Title, content: Content) {
-        check(status != PostStatus.ARCHIVED) { "The post cannot be updated while it is archived" }
+        domainCheck(status != PostStatus.ARCHIVED) { PostNotEditableException(id, status) }
         this.title = title
         this.content = content
         this.updatedAt = Clock.System.now()
     }
 
     fun archive() {
-        check(status != PostStatus.ARCHIVED) { "The post has already been archived" }
-
+        domainCheck(status != PostStatus.ARCHIVED) { PostAlreadyArchivedException(id) }
         this.status = PostStatus.ARCHIVED
         this.updatedAt = Clock.System.now()
     }
 
     fun delete() {
-        check(deletedAt == null) { "The post has already been deleted" }
-
+        domainCheck(deletedAt == null) { PostAlreadyDeletedException(id) }
         val now = Clock.System.now()
         this.deletedAt = now
         this.updatedAt = now
