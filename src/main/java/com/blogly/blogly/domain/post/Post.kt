@@ -1,5 +1,8 @@
 package com.blogly.blogly.domain.post
 
+import com.blogly.blogly.domain.post.exception.PostAlreadyArchivedException
+import com.blogly.blogly.domain.post.exception.PostAlreadyDeletedException
+import com.blogly.blogly.domain.post.exception.PostNotEditableException
 import com.blogly.blogly.domain.shared.domainCheck
 import com.blogly.blogly.domain.user.UserId
 import kotlin.time.Clock

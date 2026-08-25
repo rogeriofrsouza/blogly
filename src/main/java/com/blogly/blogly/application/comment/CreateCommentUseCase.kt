@@ -8,9 +8,9 @@ import com.blogly.blogly.domain.comment.CommentBody
 import com.blogly.blogly.domain.comment.CommentId
 import com.blogly.blogly.domain.comment.CommentRepository
 import com.blogly.blogly.domain.post.PostId
-import com.blogly.blogly.domain.post.PostNotCommentableException
-import com.blogly.blogly.domain.post.PostNotFoundException
 import com.blogly.blogly.domain.post.PostRepository
+import com.blogly.blogly.domain.post.exception.PostNotCommentableException
+import com.blogly.blogly.domain.post.exception.PostNotFoundException
 import org.springframework.stereotype.Component
 
 @Component

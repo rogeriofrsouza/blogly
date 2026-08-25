@@ -4,8 +4,8 @@ import com.blogly.blogly.application.post.dto.PostDetailsResponse
 import com.blogly.blogly.application.post.dto.toDetailsResponse
 import com.blogly.blogly.domain.post.Post
 import com.blogly.blogly.domain.post.PostId
-import com.blogly.blogly.domain.post.PostNotFoundException
 import com.blogly.blogly.domain.post.PostRepository
+import com.blogly.blogly.domain.post.exception.PostNotFoundException
 import org.springframework.stereotype.Component
 
 @Component

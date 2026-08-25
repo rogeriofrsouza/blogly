@@ -2,9 +2,9 @@ package com.blogly.blogly.application.comment
 
 import com.blogly.blogly.application.shared.UserProvider
 import com.blogly.blogly.domain.comment.*
-import com.blogly.blogly.domain.post.PostNotCommentableException
-import com.blogly.blogly.domain.post.PostNotFoundException
 import com.blogly.blogly.domain.post.PostRepository
+import com.blogly.blogly.domain.post.exception.PostNotCommentableException
+import com.blogly.blogly.domain.post.exception.PostNotFoundException
 import org.springframework.stereotype.Service
 
 @Service

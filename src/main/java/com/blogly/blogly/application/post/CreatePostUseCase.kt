@@ -4,6 +4,7 @@ import com.blogly.blogly.application.post.dto.CreatePostRequest
 import com.blogly.blogly.application.shared.IdGenerator
 import com.blogly.blogly.application.shared.UserProvider
 import com.blogly.blogly.domain.post.*
+import com.blogly.blogly.domain.post.exception.TitleAlreadyExistsException
 import org.springframework.stereotype.Component
 
 @Component
