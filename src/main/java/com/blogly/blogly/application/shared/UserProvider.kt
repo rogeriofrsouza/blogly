@@ -5,4 +5,6 @@ import com.blogly.blogly.domain.user.User
 interface UserProvider {
 
     fun currentUser(): User
+
+    fun currentUserOrNull(): User?
 }

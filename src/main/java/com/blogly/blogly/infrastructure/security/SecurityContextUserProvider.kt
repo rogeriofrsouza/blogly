@@ -9,11 +9,12 @@ import org.springframework.stereotype.Component
 @Component
 class SecurityContextUserProvider : UserProvider {
 
-    override fun currentUser(): User {
-        val principal = SecurityContextHolder.getContext().authentication?.principal
+    override fun currentUser(): User =
+        requireNotNull(currentUserOrNull()) { "No authenticated user in the security context" }
 
-        require(principal is SecurityUser) { "No authenticated user in the security context" }
-
-        return principal.user
-    }
+    override fun currentUserOrNull(): User? =
+        SecurityContextHolder.getContext().authentication
+            ?.principal
+            ?.let { it as? SecurityUser }
+            ?.user
 }
