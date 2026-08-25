@@ -43,6 +43,18 @@ class PostJpaRepositoryAdapter(
         )
     }
 
+    override fun findFeatured(pageQuery: PageQuery): PageResult<Post> {
+        val pageable = PageRequest.of(pageQuery.page, pageQuery.size)
+        val posts = repository.findFeatured(pageable)
+
+        return PageResult(
+            posts.content.map(PostDomainMapper::toDomain),
+            pageQuery.page,
+            pageQuery.size,
+            posts.totalElements
+        )
+    }
+
     override fun save(post: Post): PostId {
         val entity = PostDomainMapper.toEntity(post)
         repository.save(entity)

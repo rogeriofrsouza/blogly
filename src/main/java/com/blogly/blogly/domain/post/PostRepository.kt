@@ -10,6 +10,8 @@ interface PostRepository {
 
     fun findAllByAuthor(userId: UserId, postQuery: PostQuery, pageQuery: PageQuery): PageResult<Post>
 
+    fun findFeatured(pageQuery: PageQuery): PageResult<Post>
+
     fun save(post: Post): PostId
 
     fun existsByTitle(title: Title): Boolean
