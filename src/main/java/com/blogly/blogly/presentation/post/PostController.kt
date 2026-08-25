@@ -6,6 +6,7 @@ import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.presentation.shared.PageQueryParams
 import com.blogly.blogly.presentation.shared.toPagedModel
+import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import org.springdoc.core.annotations.ParameterObject
 import org.springframework.data.web.PagedModel
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 
+@Tag(name = "posts")
 @RequestMapping("/api/posts")
 @RestController
 class PostController(

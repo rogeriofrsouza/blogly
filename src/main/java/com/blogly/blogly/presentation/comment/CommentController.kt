@@ -8,12 +8,14 @@ import com.blogly.blogly.application.comment.dto.CommentDetailsResponse
 import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.domain.comment.CommentId
 import com.blogly.blogly.domain.post.PostId
+import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 
+@Tag(name = "comments")
 @RestController
 class CommentController(
     private val createUseCase: CreateCommentUseCase,

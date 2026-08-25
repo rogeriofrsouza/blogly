@@ -4,6 +4,7 @@ import com.blogly.blogly.application.auth.SignInUseCase
 import com.blogly.blogly.application.auth.SignUpUseCase
 import com.blogly.blogly.application.auth.dto.SignInResponse
 import com.blogly.blogly.application.auth.dto.SignUpResponse
+import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 
+@Tag(name = "auth")
 @RequestMapping("/auth")
 @RestController
 class AuthController(
