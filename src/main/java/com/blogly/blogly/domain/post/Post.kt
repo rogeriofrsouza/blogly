@@ -22,6 +22,9 @@ class Post(
 
     fun isAuthoredBy(userId: UserId): Boolean = this.userId == userId
 
+    fun isVisibleTo(userId: UserId?): Boolean =
+        status == PostStatus.PUBLISHED || (userId != null && isAuthoredBy(userId))
+
     fun update(title: Title, content: Content) {
         domainCheck(status != PostStatus.ARCHIVED) { PostNotEditableException(id, status) }
         this.title = title
