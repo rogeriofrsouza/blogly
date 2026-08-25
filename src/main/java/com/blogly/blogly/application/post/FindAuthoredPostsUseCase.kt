@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
-class FindAllPostsUseCase(
+class FindAuthoredPostsUseCase(
     private val repository: PostRepository,
     private val userProvider: UserProvider
 ) {
