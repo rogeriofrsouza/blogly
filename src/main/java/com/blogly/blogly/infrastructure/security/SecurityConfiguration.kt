@@ -3,6 +3,7 @@ package com.blogly.blogly.infrastructure.security
 import com.blogly.blogly.infrastructure.security.jwt.JwtFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
@@ -22,6 +23,7 @@ class SecurityConfiguration {
             .authorizeHttpRequests {
                 it
                     .requestMatchers("/auth/**", "/scalar/**", "/v3/api-docs").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/posts/*").permitAll()
                     .anyRequest().authenticated()
             }
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)
