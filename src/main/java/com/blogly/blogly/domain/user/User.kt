@@ -22,9 +22,8 @@ class User(
 
     fun verifyPassword(plainText: String, hasher: PasswordHasher) = password.matches(plainText, hasher)
 
-    fun updateProfile(name: Name, bio: Bio?, avatarKey: AvatarKey?) {
+    fun updateProfile(name: Name, bio: Bio?) {
         this.name = name
         this.bio = bio
-        this.avatarKey = avatarKey
     }
 }
