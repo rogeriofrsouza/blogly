@@ -3,6 +3,8 @@ package com.blogly.blogly.infrastructure.persistence.user;
 import com.blogly.blogly.domain.user.Role;
 import jakarta.persistence.*;
 
+import java.time.Instant;
+
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -22,6 +24,15 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Role role;
+
+    @Column(name = "bio", length = 200)
+    private String bio;
+
+    @Column(name = "avatar_key", length = 100)
+    private String avatarKey;
+
+    @Column(name = "joined_at", nullable = false)
+    private Instant joinedAt;
 
     public Long getId() {
         return this.id;
@@ -43,6 +54,18 @@ public class UserEntity {
         return this.role;
     }
 
+    public String getBio() {
+        return this.bio;
+    }
+
+    public String getAvatarKey() {
+        return this.avatarKey;
+    }
+
+    public Instant getJoinedAt() {
+        return this.joinedAt;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -61,5 +84,17 @@ public class UserEntity {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setAvatarKey(String avatarUrl) {
+        this.avatarKey = avatarUrl;
+    }
+
+    public void setJoinedAt(Instant joinedAt) {
+        this.joinedAt = joinedAt;
     }
 }
