@@ -2,8 +2,8 @@ package com.blogly.blogly.presentation.user
 
 import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.application.user.CreateUserUseCase
-import com.blogly.blogly.application.user.GetUserByIdUseCase
-import com.blogly.blogly.application.user.dto.UserDetailsResponse
+import com.blogly.blogly.application.user.GetUserProfileUseCase
+import com.blogly.blogly.application.user.dto.UserProfileResponse
 import com.blogly.blogly.domain.user.UserId
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 @RestController
 class UserController(
     private val createUseCase: CreateUserUseCase,
-    private val getByIdUseCase: GetUserByIdUseCase
+    private val getProfileUseCase: GetUserProfileUseCase
 ) {
     @PostMapping
     fun create(@Valid @RequestBody dto: CreateUserDto): ResponseEntity<Void> {
@@ -31,6 +31,6 @@ class UserController(
     }
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: String): UserDetailsResponse =
-        getByIdUseCase.execute(UserId(TsidCodec.decode(id)))
+    fun getProfile(@PathVariable id: String): UserProfileResponse =
+        getProfileUseCase.execute(UserId(TsidCodec.decode(id)))
 }

@@ -23,7 +23,7 @@ class SecurityConfiguration {
             .authorizeHttpRequests {
                 it
                     .requestMatchers("/auth/**", "/scalar/**", "/v3/api-docs").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/api/posts/*", "/api/posts/*/comments").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/posts/*", "/api/posts/*/comments", "/api/users/*").permitAll()
                     .anyRequest().authenticated()
             }
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)
