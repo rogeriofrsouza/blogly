@@ -1,6 +1,7 @@
 package com.blogly.blogly.presentation.exception
 
 import com.blogly.blogly.application.auth.InvalidCredentialsException
+import com.blogly.blogly.application.auth.UnauthenticatedException
 import com.blogly.blogly.application.exception.ApplicationException
 import com.blogly.blogly.application.user.AdminPrivilegeRequiredException
 import com.blogly.blogly.application.user.UserAlreadyAdminException
@@ -44,7 +45,7 @@ class GlobalExceptionHandler {
     fun handleDomain(ex: DomainException): ResponseEntity<ApiError> =
         build(HttpStatus.UNPROCESSABLE_CONTENT, ex)
 
-    @ExceptionHandler(InvalidCredentialsException::class)
+    @ExceptionHandler(InvalidCredentialsException::class, UnauthenticatedException::class)
     fun handleUnauthorized(ex: RuntimeException): ResponseEntity<ApiError> =
         build(HttpStatus.UNAUTHORIZED, ex)
 
