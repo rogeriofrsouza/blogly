@@ -2,13 +2,13 @@ package com.blogly.blogly.presentation.post
 
 import com.blogly.blogly.domain.post.PostQuery
 import com.blogly.blogly.domain.post.PostStatus
-import org.hibernate.validator.constraints.Length
+import jakarta.validation.constraints.Size
 
 data class PostQueryParams(
-    @field:Length(max = 50)
+    @field:Size(max = 50)
     val title: String? = null,
 
-    @field:Length(max = 50)
+    @field:Size(max = 50)
     val content: String? = null,
 
     val status: PostStatus? = null
