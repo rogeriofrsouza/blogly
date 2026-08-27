@@ -28,8 +28,7 @@ class CreateUserUseCase(
             id = UserId(idGenerator.generate()),
             email = email,
             password = Password.create(request.password, passwordHasher),
-            name = Name(request.name),
-            role = request.role
+            name = Name(request.name)
         )
 
         return repository.save(user)
