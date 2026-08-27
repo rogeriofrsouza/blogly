@@ -8,7 +8,6 @@ import kotlin.time.toJavaInstant
 data class UserDetailsResponse(
     val id: String,
     val email: String,
-    val role: String,
     val name: String,
     val bio: String?,
     val avatarKey: String?,
@@ -19,7 +18,6 @@ fun User.toDetailsResponse() =
     UserDetailsResponse(
         id = TsidCodec.encode(id.value),
         email = email.value,
-        role = role.name,
         name = name.value,
         bio = bio?.value,
         avatarKey = avatarKey?.value,
