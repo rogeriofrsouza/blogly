@@ -6,7 +6,5 @@ interface TokenProvider {
 
     fun generateToken(user: User): String
 
-    fun extractUsername(token: String): String
-
-    fun isTokenValid(token: String, username: String): Boolean
+    fun parseToken(token: String): TokenClaims?
 }
