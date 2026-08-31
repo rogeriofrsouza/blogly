@@ -1,20 +1,32 @@
 package com.blogly.blogly.infrastructure.security
 
+import com.blogly.blogly.application.auth.TokenClaims
 import com.blogly.blogly.application.auth.UnauthenticatedException
 import com.blogly.blogly.application.shared.UserProvider
-import com.blogly.blogly.domain.user.User
-import com.blogly.blogly.infrastructure.security.userdetails.SecurityUser
+import com.blogly.blogly.domain.user.Email
+import com.blogly.blogly.domain.user.Role
+import com.blogly.blogly.domain.user.UserId
+import org.springframework.security.authentication.AnonymousAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
 @Component
 class SecurityContextUserProvider : UserProvider {
 
-    override fun currentUser(): User = currentUserOrNull() ?: throw UnauthenticatedException()
+    override fun currentUserId(): UserId = claims().userId
 
-    override fun currentUserOrNull(): User? =
-        SecurityContextHolder.getContext().authentication
-            ?.principal
-            ?.let { it as? SecurityUser }
-            ?.user
+    override fun currentUserIdOrNull(): UserId? = claimsOrNull()?.userId
+
+    override fun currentUserEmail(): Email = claims().email
+
+    override fun currentUserRole(): Role = claims().role
+
+    private fun claims(): TokenClaims =
+        claimsOrNull() ?: throw UnauthenticatedException()
+
+    private fun claimsOrNull(): TokenClaims? =
+        (SecurityContextHolder.getContext().authentication
+            ?.takeIf { it.isAuthenticated && it !is AnonymousAuthenticationToken }
+            ?.principal as? JwtPrincipal)
+            ?.claims
 }

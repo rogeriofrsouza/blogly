@@ -27,13 +27,13 @@ class CreateCommentUseCase(
             throw PostNotCommentableException(postId, post.status)
         }
 
-        val user = userProvider.currentUser()
+        val userId = userProvider.currentUserId()
 
         val comment = Comment(
             id = CommentId(idGenerator.generate()),
             body = CommentBody(request.body),
             postId = postId,
-            userId = user.id
+            userId = userId
         )
 
         return repository.save(comment)

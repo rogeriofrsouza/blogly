@@ -20,12 +20,12 @@ class CreatePostUseCase(
             throw TitleAlreadyExistsException(title)
         }
 
-        val user = userProvider.currentUser()
+        val userId = userProvider.currentUserId()
         val post = Post(
             id = PostId(idGenerator.generate()),
             title = title,
             content = Content(request.content),
-            userId = user.id
+            userId = userId
         )
 
         return repository.save(post)

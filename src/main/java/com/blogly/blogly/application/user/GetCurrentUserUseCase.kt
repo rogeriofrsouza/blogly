@@ -13,7 +13,7 @@ class GetCurrentUserUseCase(
     private val userProvider: UserProvider
 ) {
     fun execute(): UserDetailsResponse {
-        val userId = userProvider.currentUser().id
+        val userId = userProvider.currentUserId()
 
         return repository
             .findById(userId)
