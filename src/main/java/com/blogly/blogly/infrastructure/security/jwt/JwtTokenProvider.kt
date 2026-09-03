@@ -28,7 +28,7 @@ class JwtTokenProvider(private val jwtProperties: JwtProperties) : TokenProvider
             .withClaim(ROLE_CLAIM, user.role.name)
             .withClaim(UID_CLAIM, TsidCodec.encode(user.id.value))
             .withIssuedAt(now)
-            .withExpiresAt(now.plusMillis(jwtProperties.expirationMs))
+            .withExpiresAt(now.plus(jwtProperties.expiration))
             .sign(algorithm)
     }
 

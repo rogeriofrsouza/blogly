@@ -1,4 +1,4 @@
-package com.blogly.blogly.infrastructure.security
+package com.blogly.blogly.infrastructure.security.jwt
 
 import com.blogly.blogly.application.auth.TokenClaims
 import org.springframework.security.core.AuthenticatedPrincipal

@@ -2,7 +2,6 @@ package com.blogly.blogly.infrastructure.security.jwt
 
 import com.blogly.blogly.application.auth.TokenClaims
 import com.blogly.blogly.application.auth.TokenProvider
-import com.blogly.blogly.infrastructure.security.JwtPrincipal
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
