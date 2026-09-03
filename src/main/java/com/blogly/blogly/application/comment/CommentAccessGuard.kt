@@ -21,8 +21,8 @@ class CommentAccessGuard(
             throw PostNotCommentableException(comment.postId, post.status)
         }
 
-        val user = userProvider.currentUser()
-        if (!comment.isAuthoredBy(user.id)) {
+        val userId = userProvider.currentUserId()
+        if (!comment.isAuthoredBy(userId)) {
             throw CommentNotOwnedException(commentId)
         }
 

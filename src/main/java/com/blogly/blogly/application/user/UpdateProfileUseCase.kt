@@ -16,7 +16,7 @@ class UpdateProfileUseCase(
 ) {
     @Transactional
     fun execute(request: UpdateProfileRequest) {
-        val userId = userProvider.currentUser().id
+        val userId = userProvider.currentUserId()
         val user = repository.findById(userId) ?: throw UserNotFoundException(userId)
 
         user.updateProfile(

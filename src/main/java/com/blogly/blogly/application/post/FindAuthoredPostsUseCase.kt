@@ -18,9 +18,9 @@ class FindAuthoredPostsUseCase(
 ) {
     @Transactional(readOnly = true)
     fun execute(postQuery: PostQuery, pageQuery: PageQuery): PageResult<PostDetailsResponse> {
-        val user = userProvider.currentUser()
+        val userId = userProvider.currentUserId()
 
-        return repository.findAllByAuthor(user.id, postQuery, pageQuery)
+        return repository.findAllByAuthor(userId, postQuery, pageQuery)
             .map(Post::toDetailsResponse)
     }
 }

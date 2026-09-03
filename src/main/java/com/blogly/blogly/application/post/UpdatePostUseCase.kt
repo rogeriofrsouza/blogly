@@ -18,9 +18,9 @@ class UpdatePostUseCase(
 ) {
     fun execute(postId: PostId, request: UpdatePostRequest) {
         val post = repository.findById(postId) ?: throw PostNotFoundException(postId)
-        val user = userProvider.currentUser()
+        val userId = userProvider.currentUserId()
 
-        if (!post.isAuthoredBy(user.id)) {
+        if (!post.isAuthoredBy(userId)) {
             throw PostNotOwnedException(postId)
         }
 

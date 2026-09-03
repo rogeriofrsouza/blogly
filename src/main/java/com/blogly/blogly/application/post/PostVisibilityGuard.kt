@@ -15,7 +15,7 @@ class PostVisibilityGuard(
     fun resolveVisiblePost(postId: PostId): Post {
         val post = postRepository.findById(postId) ?: throw PostNotFoundException(postId)
 
-        if (!post.isVisibleTo(userProvider.currentUserOrNull()?.id)) {
+        if (!post.isVisibleTo(userProvider.currentUserIdOrNull())) {
             throw PostNotFoundException(postId)
         }
 
