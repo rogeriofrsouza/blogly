@@ -6,7 +6,7 @@ import com.blogly.blogly.application.shared.UserProvider
 import com.blogly.blogly.domain.user.Email
 import com.blogly.blogly.domain.user.Role
 import com.blogly.blogly.domain.user.UserId
-import org.springframework.security.authentication.AnonymousAuthenticationToken
+import com.blogly.blogly.infrastructure.security.jwt.JwtPrincipal
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
@@ -26,7 +26,6 @@ class SecurityContextUserProvider : UserProvider {
 
     private fun claimsOrNull(): TokenClaims? =
         (SecurityContextHolder.getContext().authentication
-            ?.takeIf { it.isAuthenticated && it !is AnonymousAuthenticationToken }
             ?.principal as? JwtPrincipal)
             ?.claims
 }
