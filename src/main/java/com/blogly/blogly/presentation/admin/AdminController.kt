@@ -2,11 +2,16 @@ package com.blogly.blogly.presentation.admin
 
 import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.application.user.CreateUserUseCase
+import com.blogly.blogly.application.user.FindAllUsersUseCase
 import com.blogly.blogly.application.user.GetUserDetailsUseCase
 import com.blogly.blogly.application.user.dto.UserDetailsResponse
 import com.blogly.blogly.domain.user.UserId
+import com.blogly.blogly.presentation.shared.PageQueryParams
+import com.blogly.blogly.presentation.shared.toPagedModel
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
+import org.springdoc.core.annotations.ParameterObject
+import org.springframework.data.web.PagedModel
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
@@ -16,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 @RestController
 class AdminController(
     private val createUserUseCase: CreateUserUseCase,
+    private val findAllUsersUseCase: FindAllUsersUseCase,
     private val getUserDetailsUseCase: GetUserDetailsUseCase
 ) {
     @PostMapping("/users")
@@ -29,6 +35,10 @@ class AdminController(
 
         return ResponseEntity.created(location).build()
     }
+
+    @GetMapping("/users")
+    fun findAllUsers(@ParameterObject @Valid pageParams: PageQueryParams): PagedModel<UserDetailsResponse> =
+        findAllUsersUseCase.execute(pageParams.toQuery()).toPagedModel()
 
     @GetMapping("/users/{id}")
     fun getUserDetails(@PathVariable id: String): UserDetailsResponse =
