@@ -5,7 +5,7 @@ import com.blogly.blogly.domain.user.Role
 import org.springframework.stereotype.Service
 
 @Service
-class AdminAccessGuard(
+class UserGuard(
     private val userProvider: UserProvider
 ) {
     fun requireAdmin() {

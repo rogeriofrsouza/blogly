@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component
 @Component
 class FindAllUsersUseCase(
     private val repository: UserRepository,
-    private val adminAccessGuard: AdminAccessGuard
+    private val userGuard: UserGuard
 ) {
     fun execute(pageQuery: PageQuery): PageResult<UserDetailsResponse> {
-        adminAccessGuard.requireAdmin()
+        userGuard.requireAdmin()
 
         return repository.findAll(pageQuery)
             .map(User::toDetailsResponse)

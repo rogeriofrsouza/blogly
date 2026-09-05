@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component
 @Component
 class GetUserDetailsUseCase(
     private val repository: UserRepository,
-    private val adminAccessGuard: AdminAccessGuard
+    private val userGuard: UserGuard
 ) {
     fun execute(userId: UserId): UserDetailsResponse {
-        adminAccessGuard.requireAdmin()
+        userGuard.requireAdmin()
 
         return repository.findById(userId)
             ?.toDetailsResponse()

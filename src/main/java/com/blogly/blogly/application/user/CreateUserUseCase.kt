@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 class CreateUserUseCase(
     private val repository: UserRepository,
-    private val adminAccessGuard: AdminAccessGuard,
+    private val userGuard: UserGuard,
     private val passwordHasher: PasswordHasher,
     private val idGenerator: IdGenerator
 ) {
     @Transactional
     fun execute(request: CreateUserRequest): UserId {
-        adminAccessGuard.requireAdmin()
+        userGuard.requireAdmin()
 
         val email = Email(request.email)
 
