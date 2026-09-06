@@ -9,7 +9,7 @@ import com.blogly.blogly.domain.post.PostId
 import org.springframework.stereotype.Component
 
 @Component
-class FindAllCommentsUseCase(
+class FindAllPostCommentsUseCase(
     private val repository: CommentRepository,
     private val visibilityGuard: PostVisibilityGuard
 ) {

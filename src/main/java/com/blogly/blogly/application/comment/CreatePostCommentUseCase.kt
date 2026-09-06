@@ -14,7 +14,7 @@ import com.blogly.blogly.domain.post.exception.PostNotFoundException
 import org.springframework.stereotype.Component
 
 @Component
-class CreateCommentUseCase(
+class CreatePostCommentUseCase(
     private val repository: CommentRepository,
     private val postRepository: PostRepository,
     private val userProvider: UserProvider,

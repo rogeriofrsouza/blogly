@@ -1,8 +1,8 @@
 package com.blogly.blogly.presentation.comment
 
-import com.blogly.blogly.application.comment.CreateCommentUseCase
+import com.blogly.blogly.application.comment.CreatePostCommentUseCase
 import com.blogly.blogly.application.comment.DeleteCommentUseCase
-import com.blogly.blogly.application.comment.FindAllCommentsUseCase
+import com.blogly.blogly.application.comment.FindAllPostCommentsUseCase
 import com.blogly.blogly.application.comment.UpdateCommentUseCase
 import com.blogly.blogly.application.comment.dto.CommentDetailsResponse
 import com.blogly.blogly.application.shared.TsidCodec
@@ -18,17 +18,17 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 @Tag(name = "comments")
 @RestController
 class CommentController(
-    private val createUseCase: CreateCommentUseCase,
-    private val findAllUseCase: FindAllCommentsUseCase,
+    private val createPostCommentUseCase: CreatePostCommentUseCase,
+    private val findAllPostCommentsUseCase: FindAllPostCommentsUseCase,
     private val updateUseCase: UpdateCommentUseCase,
     private val deleteUseCase: DeleteCommentUseCase
 ) {
     @PostMapping("/api/posts/{postId}/comments")
-    fun create(
+    fun createPostComment(
         @PathVariable postId: String,
         @Valid @RequestBody dto: CreateCommentDto
     ): ResponseEntity<Void> {
-        val id = createUseCase.execute(PostId(TsidCodec.decode(postId)), dto.toRequest())
+        val id = createPostCommentUseCase.execute(PostId(TsidCodec.decode(postId)), dto.toRequest())
 
         val location = ServletUriComponentsBuilder.fromCurrentContextPath()
             .path("/api/comments/{id}")
@@ -39,8 +39,8 @@ class CommentController(
     }
 
     @GetMapping("/api/posts/{postId}/comments")
-    fun findAll(@PathVariable postId: String): List<CommentDetailsResponse> =
-        findAllUseCase.execute(PostId(TsidCodec.decode(postId)))
+    fun findAllPostComments(@PathVariable postId: String): List<CommentDetailsResponse> =
+        findAllPostCommentsUseCase.execute(PostId(TsidCodec.decode(postId)))
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/api/comments/{commentId}")
