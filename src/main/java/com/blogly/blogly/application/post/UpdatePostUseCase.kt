@@ -9,6 +9,7 @@ import com.blogly.blogly.domain.post.Title
 import com.blogly.blogly.domain.post.exception.PostNotFoundException
 import com.blogly.blogly.domain.post.exception.PostNotOwnedException
 import com.blogly.blogly.domain.post.exception.TitleAlreadyExistsException
+import com.blogly.blogly.domain.shared.domainCheck
 import org.springframework.stereotype.Component
 
 @Component
@@ -20,9 +21,7 @@ class UpdatePostUseCase(
         val post = repository.findById(postId) ?: throw PostNotFoundException(postId)
         val userId = userProvider.currentUserId()
 
-        if (!post.isAuthoredBy(userId)) {
-            throw PostNotOwnedException(postId)
-        }
+        domainCheck(post.isAuthoredBy(userId)) { PostNotOwnedException(postId) }
 
         val title = Title(request.title)
 

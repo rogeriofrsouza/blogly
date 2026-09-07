@@ -11,6 +11,7 @@ import com.blogly.blogly.domain.post.PostId
 import com.blogly.blogly.domain.post.PostRepository
 import com.blogly.blogly.domain.post.exception.PostNotCommentableException
 import com.blogly.blogly.domain.post.exception.PostNotFoundException
+import com.blogly.blogly.domain.shared.domainCheck
 import org.springframework.stereotype.Component
 
 @Component
@@ -23,9 +24,7 @@ class CreatePostCommentUseCase(
     fun execute(postId: PostId, request: CreateCommentRequest): CommentId {
         val post = postRepository.findById(postId) ?: throw PostNotFoundException(postId)
 
-        if (!post.canBeCommentedOn()) {
-            throw PostNotCommentableException(postId, post.status)
-        }
+        domainCheck(post.canBeCommentedOn()) { PostNotCommentableException(postId, post.status) }
 
         val userId = userProvider.currentUserId()
 
