@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
-class UpdateProfileUseCase(
+class UpdateUserProfileUseCase(
     private val repository: UserRepository,
     private val userProvider: UserProvider
 ) {

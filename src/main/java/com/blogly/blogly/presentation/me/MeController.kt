@@ -3,7 +3,7 @@ package com.blogly.blogly.presentation.me
 import com.blogly.blogly.application.post.FindAuthoredPostsUseCase
 import com.blogly.blogly.application.post.dto.PostDetailsResponse
 import com.blogly.blogly.application.user.GetCurrentUserUseCase
-import com.blogly.blogly.application.user.UpdateProfileUseCase
+import com.blogly.blogly.application.user.UpdateUserProfileUseCase
 import com.blogly.blogly.application.user.dto.UserDetailsResponse
 import com.blogly.blogly.presentation.post.PostQueryParams
 import com.blogly.blogly.presentation.shared.PageQueryParams
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*
 class MeController(
     private val findAuthoredPostsUseCase: FindAuthoredPostsUseCase,
     private val getCurrentUserUseCase: GetCurrentUserUseCase,
-    private val updateProfileUseCase: UpdateProfileUseCase
+    private val updateUserProfileUseCase: UpdateUserProfileUseCase
 ) {
     @GetMapping
     fun getUser(): UserDetailsResponse = getCurrentUserUseCase.execute()
@@ -29,7 +29,7 @@ class MeController(
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/profile")
     fun updateProfile(@Valid @RequestBody dto: UpdateProfileDto) =
-        updateProfileUseCase.execute(dto.toRequest())
+        updateUserProfileUseCase.execute(dto.toRequest())
 
     @GetMapping("/posts")
     fun findPosts(
