@@ -1,6 +1,7 @@
 package com.blogly.blogly.application.user
 
 import com.blogly.blogly.application.shared.IdGenerator
+import com.blogly.blogly.application.shared.UserGuard
 import com.blogly.blogly.application.user.dto.CreateUserRequest
 import com.blogly.blogly.domain.user.*
 import com.blogly.blogly.domain.user.exception.EmailAlreadyExistsException

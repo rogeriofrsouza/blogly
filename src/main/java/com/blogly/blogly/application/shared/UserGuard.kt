@@ -1,6 +1,6 @@
-package com.blogly.blogly.application.user
+package com.blogly.blogly.application.shared
 
-import com.blogly.blogly.application.shared.UserProvider
+import com.blogly.blogly.application.user.AdminPrivilegeRequiredException
 import com.blogly.blogly.domain.user.Role
 import org.springframework.stereotype.Service
 

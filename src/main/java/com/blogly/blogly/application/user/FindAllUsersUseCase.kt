@@ -1,5 +1,6 @@
 package com.blogly.blogly.application.user
 
+import com.blogly.blogly.application.shared.UserGuard
 import com.blogly.blogly.application.user.dto.UserDetailsResponse
 import com.blogly.blogly.application.user.dto.toDetailsResponse
 import com.blogly.blogly.domain.shared.PageQuery
