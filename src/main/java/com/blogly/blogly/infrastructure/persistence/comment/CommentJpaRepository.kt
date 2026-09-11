@@ -5,6 +5,12 @@ import org.springframework.data.jpa.repository.Query
 
 interface CommentJpaRepository : JpaRepository<CommentEntity, Long> {
 
+    fun findByIdAndDeletedAtIsNull(id: Long): CommentEntity?
+
+    fun findByIdAndDeletedAtIsNotNull(id: Long): CommentEntity?
+
+    fun existsByParentId(parentId: Long): Boolean
+
     @Query(
         """
         select c from CommentEntity c
