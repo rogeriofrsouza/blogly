@@ -1,9 +1,6 @@
 package com.blogly.blogly.presentation.comment
 
-import com.blogly.blogly.application.comment.CreatePostCommentUseCase
-import com.blogly.blogly.application.comment.DeleteCommentUseCase
-import com.blogly.blogly.application.comment.FindAllPostCommentsUseCase
-import com.blogly.blogly.application.comment.UpdateCommentUseCase
+import com.blogly.blogly.application.comment.*
 import com.blogly.blogly.application.comment.dto.CommentDetailsResponse
 import com.blogly.blogly.application.shared.TsidCodec
 import com.blogly.blogly.domain.comment.CommentId
@@ -19,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 @RestController
 class CommentController(
     private val createPostCommentUseCase: CreatePostCommentUseCase,
+    private val createCommentReplyUseCase: CreateCommentReplyUseCase,
     private val findAllPostCommentsUseCase: FindAllPostCommentsUseCase,
     private val updateUseCase: UpdateCommentUseCase,
     private val deleteUseCase: DeleteCommentUseCase
@@ -28,14 +26,23 @@ class CommentController(
         @PathVariable postId: String,
         @Valid @RequestBody dto: CreateCommentDto
     ): ResponseEntity<Void> {
-        val id = createPostCommentUseCase.execute(PostId(TsidCodec.decode(postId)), dto.toRequest())
+        val id = createPostCommentUseCase.execute(
+            PostId(TsidCodec.decode(postId)), dto.toRequest()
+        )
 
-        val location = ServletUriComponentsBuilder.fromCurrentContextPath()
-            .path("/api/comments/{id}")
-            .buildAndExpand(TsidCodec.encode(id.value))
-            .toUri()
+        return ResponseEntity.created(location(id)).build()
+    }
 
-        return ResponseEntity.created(location).build()
+    @PostMapping("/api/comments/{commentId}/replies")
+    fun createReply(
+        @PathVariable commentId: String,
+        @Valid @RequestBody dto: CreateCommentDto
+    ): ResponseEntity<Void> {
+        val id = createCommentReplyUseCase.execute(
+            CommentId(TsidCodec.decode(commentId)), dto.toRequest()
+        )
+
+        return ResponseEntity.created(location(id)).build()
     }
 
     @GetMapping("/api/posts/{postId}/comments")
@@ -53,4 +60,10 @@ class CommentController(
     @DeleteMapping("/api/comments/{commentId}")
     fun delete(@PathVariable commentId: String) =
         deleteUseCase.execute(CommentId(TsidCodec.decode(commentId)))
+
+    private fun location(id: CommentId) =
+        ServletUriComponentsBuilder.fromCurrentContextPath()
+            .path("/api/comments/{id}")
+            .buildAndExpand(TsidCodec.encode(id.value))
+            .toUri()
 }
