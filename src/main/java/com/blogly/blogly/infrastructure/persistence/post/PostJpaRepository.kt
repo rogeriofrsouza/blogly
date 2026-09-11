@@ -15,7 +15,7 @@ interface PostJpaRepository : JpaRepository<PostEntity, Long>, JpaSpecificationE
     @Query(
         value = """
         select p from PostEntity p
-        left join CommentEntity c on c.postId = p.id
+            left join CommentEntity c on c.postId = p.id and c.deletedAt is null
         where p.status = com.blogly.blogly.domain.post.PostStatus.PUBLISHED
           and p.deletedAt is null
         group by p.id
