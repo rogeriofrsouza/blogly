@@ -6,7 +6,11 @@ interface CommentRepository {
 
     fun findById(id: CommentId): Comment?
 
+    fun findDeletedById(id: CommentId): Comment?
+
     fun findByPublishedPostId(postId: PostId): List<Comment>
+
+    fun hasReplies(id: CommentId): Boolean
 
     fun save(comment: Comment): CommentId
 
