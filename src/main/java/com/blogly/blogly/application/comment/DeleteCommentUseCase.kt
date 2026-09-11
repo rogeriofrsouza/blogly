@@ -17,6 +17,17 @@ class DeleteCommentUseCase(
         val comment = repository.findById(commentId) ?: throw CommentNotFoundException(commentId)
         domainCheck(comment.isAuthoredBy(userProvider.currentUserId())) { CommentNotOwnedException(commentId) }
 
+        if (repository.hasReplies(comment.id)) {
+            comment.delete()
+            repository.save(comment)
+            return
+        }
+
         repository.deleteById(comment.id)
+
+        comment.parentId
+            ?.let { repository.findDeletedById(it) }
+            ?.takeUnless { repository.hasReplies(it.id) }
+            ?.let { repository.deleteById(it.id) }
     }
 }
